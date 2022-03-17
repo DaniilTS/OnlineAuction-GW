@@ -13,6 +13,15 @@ IF NOT EXISTS(SELECT * FROM [Role] WHERE [Name]=@employee)
 	INSERT INTO [Role] VALUES (NEWID(), @employee)
 GO
 
+DECLARE @email NVARCHAR(15) = N'Email'
+DECLARE @phone NVARCHAR(15) = N'Phone'
+
+IF NOT EXISTS(SELECT * FROM [IdentityType] WHERE [Name]=@email)
+	INSERT INTO [IdentityType] VALUES (NEWID(), @email)
+IF NOT EXISTS(SELECT * FROM [IdentityType] WHERE [Name]=@phone)
+	INSERT INTO [IdentityType] VALUES (NEWID(), @phone)
+GO
+
 DECLARE @male NVARCHAR(10) = N'Male'
 DECLARE @female NVARCHAR(10) = N'Female'
 
@@ -74,4 +83,27 @@ IF NOT EXISTS(SELECT * FROM [AuctionType] WHERE [Name]=@opened)
 	INSERT INTO [AuctionType] VALUES (NEWID(), @opened)
 IF NOT EXISTS(SELECT * FROM [AuctionType] WHERE [Name]=@closed)
 	INSERT INTO [AuctionType] VALUES (NEWID(), @closed)
+GO
+
+DECLARE @accepted NVARCHAR(10) = N'ACCEPTED'
+DECLARE @pending NVARCHAR(10) = N'PENDING'
+DECLARE @declined NVARCHAR(10) = N'DECLINED'
+
+IF NOT EXISTS(SELECT * FROM [OfferStatus] WHERE [Name]=@accepted)
+	INSERT INTO [OfferStatus] VALUES (NEWID(), @accepted)
+IF NOT EXISTS(SELECT * FROM [OfferStatus] WHERE [Name]=@pending)
+	INSERT INTO [OfferStatus] VALUES (NEWID(), @pending)
+IF NOT EXISTS(SELECT * FROM [OfferStatus] WHERE [Name]=@declined)
+	INSERT INTO [OfferStatus] VALUES (NEWID(), @declined)
+GO
+
+DECLARE @salt NVARCHAR(36) = (SELECT CONVERT(NVARCHAR(36), NEWID()))
+DECLARE @password NVARCHAR(128) = (CONVERT(NVARCHAR(128), HASHBYTES('SHA2_512', CONCAT(N'password', @salt)), 2))
+DECLARE @adminRole UNIQUEIDENTIFIER = (SELECT [Id] FROM [Role] WHERE [Name]=N'Admin')
+
+IF NOT EXISTS(SELECT * FROM [User] WHERE [RoleId]=@adminRole)
+	DECLARE @userId UNIQUEIDENTIFIER = NEWID()
+	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, @password, @salt, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
+	IF NOT EXISTS(SELECT * FROM [Pocket] WHERE [HolderId]=@userId)
+		INSERT INTO [Pocket] VALUES (NEWID(), @userId, 0)
 GO
