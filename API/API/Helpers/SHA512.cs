@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace API
+namespace API.Helpers
 {
     public static class SHA512
     {

@@ -1,3 +1,6 @@
+using DBAL.Context;
+using DBAL.Operations;
+using DBAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +27,13 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
+
+            services.AddDbContext<OnlineAuctionContext>();
+
+            services.AddScoped<RoleRepository>();
+
+            services.AddScoped<RoleOperation>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
