@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using DBAL.Models;
 
 #nullable disable
@@ -28,8 +27,6 @@ namespace DBAL.Context
         public virtual DbSet<FinanceOperationType> FinanceOperationTypes { get; set; }
         public virtual DbSet<FullName> FullNames { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
-        public virtual DbSet<Identity> Identities { get; set; }
-        public virtual DbSet<IdentityType> IdentityTypes { get; set; }
         public virtual DbSet<Lot> Lots { get; set; }
         public virtual DbSet<LotCategory> LotCategories { get; set; }
         public virtual DbSet<LotImage> LotImages { get; set; }
@@ -70,30 +67,30 @@ namespace DBAL.Context
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.AuctionTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Auction__Auction__71D1E811");
+                    .HasConstraintName("FK__Auction__Auction__6A30C649");
 
                 entity.HasOne(d => d.FinanceOperation)
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.FinanceOperationId)
-                    .HasConstraintName("FK__Auction__Finance__74AE54BC");
+                    .HasConstraintName("FK__Auction__Finance__6D0D32F4");
 
                 entity.HasOne(d => d.Lot)
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.LotId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Auction__LotId__72C60C4A");
+                    .HasConstraintName("FK__Auction__LotId__6B24EA82");
 
                 entity.HasOne(d => d.Winner)
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.WinnerId)
-                    .HasConstraintName("FK__Auction__WinnerI__73BA3083");
+                    .HasConstraintName("FK__Auction__WinnerI__6C190EBB");
             });
 
             modelBuilder.Entity<AuctionType>(entity =>
             {
                 entity.ToTable("AuctionType");
 
-                entity.HasIndex(e => e.Name, "UQ__AuctionT__737584F648328FAE")
+                entity.HasIndex(e => e.Name, "UQ__AuctionT__737584F6ED97D4B0")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -107,7 +104,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("BalanceOperationType");
 
-                entity.HasIndex(e => e.Name, "UQ__BalanceO__737584F650FBE72F")
+                entity.HasIndex(e => e.Name, "UQ__BalanceO__737584F616C33EB5")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -121,10 +118,10 @@ namespace DBAL.Context
             {
                 entity.ToTable("Currency");
 
-                entity.HasIndex(e => e.Name, "UQ__Currency__737584F664955077")
+                entity.HasIndex(e => e.Name, "UQ__Currency__737584F61B520B73")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Code, "UQ__Currency__A25C5AA767F574C3")
+                entity.HasIndex(e => e.Code, "UQ__Currency__A25C5AA7D048F2CE")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -150,13 +147,13 @@ namespace DBAL.Context
                     .WithMany(p => p.CurrencyPairFroms)
                     .HasForeignKey(d => d.FromId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CurrencyP__FromI__45F365D3");
+                    .HasConstraintName("FK__CurrencyP__FromI__3E52440B");
 
                 entity.HasOne(d => d.To)
                     .WithMany(p => p.CurrencyPairTos)
                     .HasForeignKey(d => d.ToId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CurrencyPa__ToId__46E78A0C");
+                    .HasConstraintName("FK__CurrencyPa__ToId__3F466844");
             });
 
             modelBuilder.Entity<CurrencyPairRate>(entity =>
@@ -173,7 +170,7 @@ namespace DBAL.Context
                     .WithMany(p => p.CurrencyPairRates)
                     .HasForeignKey(d => d.CurrencyPairRateId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CurrencyP__Curre__49C3F6B7");
+                    .HasConstraintName("FK__CurrencyP__Curre__4222D4EF");
             });
 
             modelBuilder.Entity<FinanceOperation>(entity =>
@@ -196,26 +193,26 @@ namespace DBAL.Context
                     .WithMany(p => p.FinanceOperations)
                     .HasForeignKey(d => d.FinanceOperationStatusId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FinanceOp__Finan__5BE2A6F2");
+                    .HasConstraintName("FK__FinanceOp__Finan__5441852A");
 
                 entity.HasOne(d => d.FinanceOperationType)
                     .WithMany(p => p.FinanceOperations)
                     .HasForeignKey(d => d.FinanceOperationTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FinanceOp__Finan__5AEE82B9");
+                    .HasConstraintName("FK__FinanceOp__Finan__534D60F1");
 
                 entity.HasOne(d => d.Pocket)
                     .WithMany(p => p.FinanceOperations)
                     .HasForeignKey(d => d.PocketId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FinanceOp__Pocke__59FA5E80");
+                    .HasConstraintName("FK__FinanceOp__Pocke__52593CB8");
             });
 
             modelBuilder.Entity<FinanceOperationStatus>(entity =>
             {
                 entity.ToTable("FinanceOperationStatus");
 
-                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F67738DA2E")
+                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F6959CB82B")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -229,7 +226,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("FinanceOperationType");
 
-                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F6C2AFF010")
+                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F6EE71DC59")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -242,7 +239,7 @@ namespace DBAL.Context
                     .WithMany(p => p.FinanceOperationTypes)
                     .HasForeignKey(d => d.BalanceOperationTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__FinanceOp__Balan__5441852A");
+                    .HasConstraintName("FK__FinanceOp__Balan__4CA06362");
             });
 
             modelBuilder.Entity<FullName>(entity =>
@@ -266,7 +263,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("Gender");
 
-                entity.HasIndex(e => e.Name, "UQ__Gender__737584F6D07408FA")
+                entity.HasIndex(e => e.Name, "UQ__Gender__737584F682D7749B")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -274,45 +271,6 @@ namespace DBAL.Context
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(10);
-            });
-
-            modelBuilder.Entity<Identity>(entity =>
-            {
-                entity.ToTable("Identity");
-
-                entity.HasIndex(e => e.Value, "UQ__Identity__07D9BBC2278B171A")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Value)
-                    .IsRequired()
-                    .HasMaxLength(30);
-
-                entity.HasOne(d => d.IdentityType)
-                    .WithMany(p => p.Identities)
-                    .HasForeignKey(d => d.IdentityTypeId)
-                    .HasConstraintName("FK__Identity__Identi__3E52440B");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Identities)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Identity__UserId__3F466844");
-            });
-
-            modelBuilder.Entity<IdentityType>(entity =>
-            {
-                entity.ToTable("IdentityType");
-
-                entity.HasIndex(e => e.Name, "UQ__Identity__737584F64914926E")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(15);
             });
 
             modelBuilder.Entity<Lot>(entity =>
@@ -329,20 +287,20 @@ namespace DBAL.Context
                     .WithMany(p => p.Lots)
                     .HasForeignKey(d => d.CreatorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Lot__CreatorId__656C112C");
+                    .HasConstraintName("FK__Lot__CreatorId__5DCAEF64");
 
                 entity.HasOne(d => d.LotCategory)
                     .WithMany(p => p.Lots)
                     .HasForeignKey(d => d.LotCategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Lot__LotCategory__6477ECF3");
+                    .HasConstraintName("FK__Lot__LotCategory__5CD6CB2B");
             });
 
             modelBuilder.Entity<LotCategory>(entity =>
             {
                 entity.ToTable("LotCategory");
 
-                entity.HasIndex(e => e.Name, "UQ__LotCateg__737584F67325CF49")
+                entity.HasIndex(e => e.Name, "UQ__LotCateg__737584F668E72E8B")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -371,7 +329,7 @@ namespace DBAL.Context
                 entity.HasOne(d => d.Lot)
                     .WithMany(p => p.LotImages)
                     .HasForeignKey(d => d.LotId)
-                    .HasConstraintName("FK__LotImage__LotId__693CA210");
+                    .HasConstraintName("FK__LotImage__LotId__619B8048");
             });
 
             modelBuilder.Entity<Offer>(entity =>
@@ -388,25 +346,25 @@ namespace DBAL.Context
                     .WithMany(p => p.Offers)
                     .HasForeignKey(d => d.CreatorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Offer__CreatorId__7C4F7684");
+                    .HasConstraintName("FK__Offer__CreatorId__74AE54BC");
 
                 entity.HasOne(d => d.FinanceOperation)
                     .WithMany(p => p.Offers)
                     .HasForeignKey(d => d.FinanceOperationId)
-                    .HasConstraintName("FK__Offer__FinanceOp__7E37BEF6");
+                    .HasConstraintName("FK__Offer__FinanceOp__76969D2E");
 
                 entity.HasOne(d => d.Lot)
                     .WithMany(p => p.Offers)
                     .HasForeignKey(d => d.LotId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Offer__LotId__7D439ABD");
+                    .HasConstraintName("FK__Offer__LotId__75A278F5");
             });
 
             modelBuilder.Entity<OfferStatus>(entity =>
             {
                 entity.ToTable("OfferStatus");
 
-                entity.HasIndex(e => e.Name, "UQ__OfferSta__737584F6BB3F7763")
+                entity.HasIndex(e => e.Name, "UQ__OfferSta__737584F62DBF3E9E")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -428,14 +386,14 @@ namespace DBAL.Context
                     .WithMany(p => p.Pockets)
                     .HasForeignKey(d => d.HolderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Pocket__HolderId__4CA06362");
+                    .HasConstraintName("FK__Pocket__HolderId__44FF419A");
             });
 
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("Role");
 
-                entity.HasIndex(e => e.Name, "UQ__Role__737584F6E06F7655")
+                entity.HasIndex(e => e.Name, "UQ__Role__737584F61F54BE1A")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -455,9 +413,18 @@ namespace DBAL.Context
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("(getutcdate())");
 
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(255);
+
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(255);
+
+                entity.Property(e => e.Phone)
+                    .IsRequired()
+                    .HasMaxLength(13)
+                    .IsFixedLength(true);
 
                 entity.Property(e => e.Salt)
                     .IsRequired()

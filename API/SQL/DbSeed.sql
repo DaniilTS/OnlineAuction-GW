@@ -13,15 +13,6 @@ IF NOT EXISTS(SELECT * FROM [Role] WHERE [Name]=@employee)
 	INSERT INTO [Role] VALUES (NEWID(), @employee)
 GO
 
-DECLARE @email NVARCHAR(15) = N'Email'
-DECLARE @phone NVARCHAR(15) = N'Phone'
-
-IF NOT EXISTS(SELECT * FROM [IdentityType] WHERE [Name]=@email)
-	INSERT INTO [IdentityType] VALUES (NEWID(), @email)
-IF NOT EXISTS(SELECT * FROM [IdentityType] WHERE [Name]=@phone)
-	INSERT INTO [IdentityType] VALUES (NEWID(), @phone)
-GO
-
 DECLARE @male NVARCHAR(10) = N'Male'
 DECLARE @female NVARCHAR(10) = N'Female'
 
@@ -105,7 +96,7 @@ DECLARE @adminRole UNIQUEIDENTIFIER = (SELECT [Id] FROM [Role] WHERE [Name]=N'Ad
 
 IF NOT EXISTS(SELECT * FROM [User] WHERE [RoleId]=@adminRole)
 	DECLARE @userId UNIQUEIDENTIFIER = NEWID()
-	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, @password, @salt, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
+	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, N'd.tsukrov@gmail.com', N'+375292759056', @password, @salt, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
 	IF NOT EXISTS(SELECT * FROM [Pocket] WHERE [HolderId]=@userId)
 		INSERT INTO [Pocket] VALUES (NEWID(), @userId, 0)
 GO

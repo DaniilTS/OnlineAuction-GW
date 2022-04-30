@@ -30,8 +30,7 @@ namespace DBAL.Repositories
 
         public async Task<Role> GetObject(string name) 
         {
-            var res = (await _cache[string.Empty]).ToList();
-            return res.FirstOrDefault(x => x.Name == name);
+            return (await _cache[string.Empty]).FirstOrDefault(x => x.Name == name);
         }
     }
 }

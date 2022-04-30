@@ -1,4 +1,4 @@
-using DBAL.Context;
+//using DBAL.Context;
 using DBAL.Operations;
 using DBAL.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +28,7 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
 
-            services.AddDbContext<OnlineAuctionContext>();
+            //services.AddDbContext<OnlineAuctionContext>();
 
             services.AddScoped<RoleRepository>();
 

@@ -6,14 +6,14 @@ namespace DBAL.Operations
 {
     public class RoleOperation
     {
-        private readonly RoleRepository _roleRepository;
-        public RoleOperation(RoleRepository roleRepository) 
+        private readonly RoleRepository _repo;
+        public RoleOperation(RoleRepository repo) 
         {
-            _roleRepository = roleRepository;
+            _repo = repo;
         }
 
-        public Role Admin => _roleRepository.GetObject(Roles.Admin).Result;
-        public Role Employee => _roleRepository.GetObject(Roles.Employee).Result;
-        public Role Client => _roleRepository.GetObject(Roles.Client).Result;
+        public Role Admin => _repo.GetObject(Roles.Admin).Result;
+        public Role Employee => _repo.GetObject(Roles.Employee).Result;
+        public Role Client => _repo.GetObject(Roles.Client).Result;
     }
 }

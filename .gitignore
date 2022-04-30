@@ -130,5 +130,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
-API/API/.vs/API/DesignTimeBuild/.dtbcache.v2
-API/API/.vs/API/config/applicationhost.config
+API/API/.vs/*

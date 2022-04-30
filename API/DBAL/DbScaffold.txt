@@ -1,0 +1,1 @@
+﻿Scaffold-DbContext "Server=DESKTOP-MD63H11;Database=OnlineAuction;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Context -Context OnlineAuctionContext -Force

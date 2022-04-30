@@ -21,7 +21,7 @@ namespace DBAL
             _cacheEntryOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(timeSpan);
         }
 
-        public async Task<T> this[object key] => GetOrCreate(key);
+        public Task<T> this[object key] => GetOrCreate(key);
 
         public async Task<T> GetOrCreate(object key)
         {
