@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DBAL.Models
+namespace OnlineAuction.DBAL.Models
 {
     public partial class User
     {
@@ -23,8 +23,8 @@ namespace DBAL.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Password { get; set; }
-        public string RefreshToken { get; set; }
         public string Salt { get; set; }
+        public string RefreshToken { get; set; }
         public string PhotoUrl { get; set; }
         public bool IsBlocked { get; set; }
         public bool IsDeleted { get; set; }

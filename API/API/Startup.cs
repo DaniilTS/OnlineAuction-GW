@@ -31,9 +31,9 @@ namespace OnlineAuction.API
 			      services.AddDbContext<OnlineAuctionContext>();
 
             services.AddJwtBearerAuth(Configuration);
-
             services.AddRepositories();
             services.AddOperations();
+            services.AddServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

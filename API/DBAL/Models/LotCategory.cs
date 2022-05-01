@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace DBAL.Models
+namespace OnlineAuction.DBAL.Models
 {
     public partial class LotCategory
     {

@@ -1,5 +1,5 @@
 ﻿using OnlineAuction.DBAL.Context;
-using DBAL.Models;
+using OnlineAuction.DBAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

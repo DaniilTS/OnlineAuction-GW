@@ -34,8 +34,8 @@ IF NOT EXISTS(SELECT * FROM [Currency] WHERE [Name]=@usd)
 	INSERT INTO [Currency] VALUES (NEWID(), @usd, N'USD')
 GO
 
-DECLARE @positive NVARCHAR(10) = N'POSITIVE'
-DECLARE @negative NVARCHAR(10) = N'NEGATIVE'
+DECLARE @positive NVARCHAR(10) = N'Positive'
+DECLARE @negative NVARCHAR(10) = N'Negative'
 
 IF NOT EXISTS(SELECT * FROM [BalanceOperationType] WHERE [Name]=@positive)
 	INSERT INTO [BalanceOperationType] VALUES (NEWID(), @positive, 1)
@@ -46,9 +46,9 @@ GO
 DECLARE @positiveBalanceOperationType UNIQUEIDENTIFIER = (SELECT [Id] FROM [BalanceOperationType] WHERE [IsPositive] = 1)
 DECLARE @negativeBalanceOperationType UNIQUEIDENTIFIER = (SELECT [Id] FROM [BalanceOperationType] WHERE [IsPositive] = 0)
 
-DECLARE @add NVARCHAR(10) = N'ADD'
-DECLARE @withdrawal NVARCHAR(10) = N'WITHDRAWAL'
-DECLARE @notice NVARCHAR(10) = N'NOTICE'
+DECLARE @add NVARCHAR(10) = N'Add'
+DECLARE @withdrawal NVARCHAR(10) = N'Withdrawal'
+DECLARE @notice NVARCHAR(10) = N'Notice'
 
 IF NOT EXISTS(SELECT * FROM [FinanceOperationType] WHERE [Name]=@add)
 	INSERT INTO [FinanceOperationType] VALUES (NEWID(), @add, @positiveBalanceOperationType)
@@ -58,8 +58,8 @@ IF NOT EXISTS(SELECT * FROM [FinanceOperationType] WHERE [Name]=@notice)
 	INSERT INTO [FinanceOperationType] VALUES (NEWID(), @notice, @positiveBalanceOperationType)
 GO
 
-DECLARE @pending NVARCHAR(10) = N'PENDING'
-DECLARE @success NVARCHAR(10) = N'SUCCESS'
+DECLARE @pending NVARCHAR(10) = N'Pending'
+DECLARE @success NVARCHAR(10) = N'Success'
 
 IF NOT EXISTS(SELECT * FROM [FinanceOperationStatus] WHERE [Name]=@pending)
 	INSERT INTO [FinanceOperationStatus] VALUES (NEWID(), @pending)
@@ -76,9 +76,9 @@ IF NOT EXISTS(SELECT * FROM [AuctionType] WHERE [Name]=@closed)
 	INSERT INTO [AuctionType] VALUES (NEWID(), @closed)
 GO
 
-DECLARE @accepted NVARCHAR(10) = N'ACCEPTED'
-DECLARE @pending NVARCHAR(10) = N'PENDING'
-DECLARE @declined NVARCHAR(10) = N'DECLINED'
+DECLARE @accepted NVARCHAR(10) = N'Accepted'
+DECLARE @pending NVARCHAR(10) = N'Pending'
+DECLARE @declined NVARCHAR(10) = N'Declined'
 
 IF NOT EXISTS(SELECT * FROM [OfferStatus] WHERE [Name]=@accepted)
 	INSERT INTO [OfferStatus] VALUES (NEWID(), @accepted)
@@ -96,7 +96,7 @@ DECLARE @adminRole UNIQUEIDENTIFIER = (SELECT [Id] FROM [Role] WHERE [Name]=N'Ad
 
 IF NOT EXISTS(SELECT * FROM [User] WHERE [RoleId]=@adminRole)
 	DECLARE @userId UNIQUEIDENTIFIER = NEWID()
-	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, N'd.tsukrov@gmail.com', N'+375292759056', @password, @salt, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
+	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, N'd.tsukrov@gmail.com', N'+375292759056', @password, @salt, NULL, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
 	IF NOT EXISTS(SELECT * FROM [Pocket] WHERE [HolderId]=@userId)
 		INSERT INTO [Pocket] VALUES (NEWID(), @userId, 0)
 GO

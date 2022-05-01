@@ -20,8 +20,4 @@
     <ProjectReference Include="..\JWT.Auth\OnlineAuction.JWT.Auth.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

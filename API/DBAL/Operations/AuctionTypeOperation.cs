@@ -1,5 +1,5 @@
 ﻿using OnlineAuction.DBAL.Constants;
-using DBAL.Models;
+using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Repositories;
 
 namespace OnlineAuction.DBAL.Operations
