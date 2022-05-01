@@ -23,6 +23,7 @@ namespace DBAL.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Password { get; set; }
+        public string RefreshToken { get; set; }
         public string Salt { get; set; }
         public string PhotoUrl { get; set; }
         public bool IsBlocked { get; set; }

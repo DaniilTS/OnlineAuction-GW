@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using DBAL.Models;
 
 #nullable disable
@@ -41,6 +43,7 @@ namespace DBAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=DESKTOP-MD63H11;Database=OnlineAuction;Trusted_Connection=True;");
             }
         }
@@ -90,7 +93,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("AuctionType");
 
-                entity.HasIndex(e => e.Name, "UQ__AuctionT__737584F6ED97D4B0")
+                entity.HasIndex(e => e.Name, "UQ__AuctionT__737584F68DE42B9B")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -104,7 +107,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("BalanceOperationType");
 
-                entity.HasIndex(e => e.Name, "UQ__BalanceO__737584F616C33EB5")
+                entity.HasIndex(e => e.Name, "UQ__BalanceO__737584F69739BF06")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -118,10 +121,10 @@ namespace DBAL.Context
             {
                 entity.ToTable("Currency");
 
-                entity.HasIndex(e => e.Name, "UQ__Currency__737584F61B520B73")
+                entity.HasIndex(e => e.Name, "UQ__Currency__737584F6C9608484")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Code, "UQ__Currency__A25C5AA7D048F2CE")
+                entity.HasIndex(e => e.Code, "UQ__Currency__A25C5AA7D80598A6")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -212,7 +215,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("FinanceOperationStatus");
 
-                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F6959CB82B")
+                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F66D4ADFCB")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -226,7 +229,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("FinanceOperationType");
 
-                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F6EE71DC59")
+                entity.HasIndex(e => e.Name, "UQ__FinanceO__737584F65E0B9168")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -263,7 +266,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("Gender");
 
-                entity.HasIndex(e => e.Name, "UQ__Gender__737584F682D7749B")
+                entity.HasIndex(e => e.Name, "UQ__Gender__737584F698B47D63")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -300,7 +303,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("LotCategory");
 
-                entity.HasIndex(e => e.Name, "UQ__LotCateg__737584F668E72E8B")
+                entity.HasIndex(e => e.Name, "UQ__LotCateg__737584F6604E1DD3")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -364,7 +367,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("OfferStatus");
 
-                entity.HasIndex(e => e.Name, "UQ__OfferSta__737584F62DBF3E9E")
+                entity.HasIndex(e => e.Name, "UQ__OfferSta__737584F63EA252D6")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -393,7 +396,7 @@ namespace DBAL.Context
             {
                 entity.ToTable("Role");
 
-                entity.HasIndex(e => e.Name, "UQ__Role__737584F61F54BE1A")
+                entity.HasIndex(e => e.Name, "UQ__Role__737584F66501D9EB")
                     .IsUnique();
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
@@ -425,6 +428,8 @@ namespace DBAL.Context
                     .IsRequired()
                     .HasMaxLength(13)
                     .IsFixedLength(true);
+
+                entity.Property(e => e.RefreshToken).HasMaxLength(255);
 
                 entity.Property(e => e.Salt)
                     .IsRequired()
