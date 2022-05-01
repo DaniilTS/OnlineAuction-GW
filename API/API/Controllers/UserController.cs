@@ -1,10 +1,10 @@
-﻿using API.Helpers;
-using DBAL.Operations;
-using DBAL.Repositories;
+﻿using OnlineAuction.API.Helpers;
+using OnlineAuction.DBAL.Operations;
+using OnlineAuction.DBAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace API.Controllers
+namespace OnlineAuction.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

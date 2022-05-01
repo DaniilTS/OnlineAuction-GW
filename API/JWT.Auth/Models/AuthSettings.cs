@@ -1,4 +1,4 @@
-﻿namespace JWT.Auth.Models
+﻿namespace OnlineAuction.JWT.Auth.Models
 {
     public class AuthSettings
     {

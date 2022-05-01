@@ -1,19 +1,19 @@
-﻿using DBAL.Constants;
+﻿using OnlineAuction.DBAL.Constants;
 using DBAL.Models;
-using DBAL.Repositories;
+using OnlineAuction.DBAL.Repositories;
 
-namespace DBAL.Operations
+namespace OnlineAuction.DBAL.Operations
 {
-	public class OfferStatusOperation
-	{
-    private readonly OfferStatusRepository _repo;
-    public OfferStatusOperation(OfferStatusRepository repo)
+    public class OfferStatusOperation
     {
-      _repo = repo;
-    }
+        private readonly OfferStatusRepository _repo;
+        public OfferStatusOperation(OfferStatusRepository repo)
+        {
+            _repo = repo;
+        }
 
-    public OfferStatus Accepted => _repo.GetObject(OfferStatuses.Accepted).Result;
-    public OfferStatus Declined => _repo.GetObject(OfferStatuses.Declined).Result;
-    public OfferStatus Pending => _repo.GetObject(OfferStatuses.Pending).Result;
-  }
+        public OfferStatus Accepted => _repo.GetObject(OfferStatuses.Accepted).Result;
+        public OfferStatus Declined => _repo.GetObject(OfferStatuses.Declined).Result;
+        public OfferStatus Pending => _repo.GetObject(OfferStatuses.Pending).Result;
+    }
 }

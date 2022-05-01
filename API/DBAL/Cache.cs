@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DBAL
+namespace OnlineAuction.DBAL
 {
     public class Cache<T>
     {

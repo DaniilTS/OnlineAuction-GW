@@ -1,12 +1,12 @@
-﻿using JWT.Auth.Helpers;
-using JWT.Auth.Models;
-using JWT.Auth.Services;
+﻿using OnlineAuction.JWT.Auth.Helpers;
+using OnlineAuction.JWT.Auth.Models;
+using OnlineAuction.JWT.Auth.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace JWT.Auth.Extensions
+namespace OnlineAuction.JWT.Auth.Extensions
 {
     public static class AuthExtension
     {

@@ -1,5 +1,5 @@
-﻿using JWT.Auth.Helpers;
-using JWT.Auth.Models;
+﻿using OnlineAuction.JWT.Auth.Helpers;
+using OnlineAuction.JWT.Auth.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
-namespace JWT.Auth.Services
+namespace OnlineAuction.JWT.Auth.Services
 {
     public class TokenService
     {
@@ -25,8 +25,7 @@ namespace JWT.Auth.Services
                 new (ClaimTypes.Role, roleName)
             };
 
-            var secretKey = KeyHelper.GetSymmetricSecurityKey(_authSettings.Key);
-            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+            var signinCredentials = new SigningCredentials(GetSecurityKey(), SecurityAlgorithms.HmacSha256);
 
             var utcNow = DateTime.UtcNow;
 
@@ -70,11 +69,11 @@ namespace JWT.Auth.Services
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuer = true,
-                ValidIssuer = _authSettings.Issuer,
                 ValidateAudience = true,
-                ValidAudience = _authSettings.Audience,
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = KeyHelper.GetSymmetricSecurityKey(_authSettings.Key),
+                ValidIssuer = _authSettings.Issuer,
+                ValidAudience = _authSettings.Audience,
+                IssuerSigningKey = GetSecurityKey(),
                 ValidateLifetime = true
             };
 
@@ -84,11 +83,13 @@ namespace JWT.Auth.Services
             if (principal is null)
                 return null;
 
-            if (securityToken is not JwtSecurityToken jwtSecurityToken
-                || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+            if (securityToken is not JwtSecurityToken jwtSecurityToken || !IsHmacSha256(jwtSecurityToken))
                 throw new SecurityTokenException("Invalid token");
 
             return principal;
         }
+
+        private bool IsHmacSha256(JwtSecurityToken token) => token.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
+        private SecurityKey GetSecurityKey() => KeyHelper.GetSymmetricSecurityKey(_authSettings.Key);
     }
 }

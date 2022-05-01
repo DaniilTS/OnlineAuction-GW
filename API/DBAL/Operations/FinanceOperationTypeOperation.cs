@@ -1,19 +1,19 @@
-﻿using DBAL.Constants;
+﻿using OnlineAuction.DBAL.Constants;
 using DBAL.Models;
-using DBAL.Repositories;
+using OnlineAuction.DBAL.Repositories;
 
-namespace DBAL.Operations
+namespace OnlineAuction.DBAL.Operations
 {
-	public class FinanceOperationTypeOperation
-	{
-    private readonly FinanceOperationTypeRepository _repo;
-    public FinanceOperationTypeOperation(FinanceOperationTypeRepository repo)
+    public class FinanceOperationTypeOperation
     {
-      _repo = repo;
-    }
+        private readonly FinanceOperationTypeRepository _repo;
+        public FinanceOperationTypeOperation(FinanceOperationTypeRepository repo)
+        {
+            _repo = repo;
+        }
 
-    public FinanceOperationType Add => _repo.GetObject(FinanceOperationTypes.Add).Result;
-    public FinanceOperationType Withdrawal => _repo.GetObject(FinanceOperationTypes.Withdrawal).Result;
-    public FinanceOperationType Notice => _repo.GetObject(FinanceOperationTypes.Notice).Result;
-  }
+        public FinanceOperationType Add => _repo.GetObject(FinanceOperationTypes.Add).Result;
+        public FinanceOperationType Withdrawal => _repo.GetObject(FinanceOperationTypes.Withdrawal).Result;
+        public FinanceOperationType Notice => _repo.GetObject(FinanceOperationTypes.Notice).Result;
+    }
 }

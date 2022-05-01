@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace JWT.Auth.Helpers
+namespace OnlineAuction.JWT.Auth.Helpers
 {
     public static class KeyHelper
     {

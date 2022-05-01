@@ -1,8 +1,8 @@
-﻿using DBAL.Constants;
+﻿using OnlineAuction.DBAL.Constants;
 using DBAL.Models;
-using DBAL.Repositories;
+using OnlineAuction.DBAL.Repositories;
 
-namespace DBAL.Operations
+namespace OnlineAuction.DBAL.Operations
 {
     public class AuctionTypeOperation
     {

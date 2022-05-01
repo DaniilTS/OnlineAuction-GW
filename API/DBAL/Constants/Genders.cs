@@ -1,4 +1,4 @@
-﻿namespace DBAL.Constants
+﻿namespace OnlineAuction.DBAL.Constants
 {
     public static class Genders
     {

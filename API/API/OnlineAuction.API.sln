@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32422.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API.csproj", "{B2FBAAB8-A0C7-4D42-8788-FA92C1A4274B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.API", "OnlineAuction.API.csproj", "{B2FBAAB8-A0C7-4D42-8788-FA92C1A4274B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBAL", "..\DBAL\DBAL.csproj", "{7AC4A2B6-AF60-4750-9500-0B046D0C4328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.DBAL", "..\DBAL\OnlineAuction.DBAL.csproj", "{7AC4A2B6-AF60-4750-9500-0B046D0C4328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JWT.Auth", "..\JWT.Auth\JWT.Auth.csproj", "{034A3CF9-4BBA-4654-96CD-8F9F12A6B86C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuction.JWT.Auth", "..\JWT.Auth\OnlineAuction.JWT.Auth.csproj", "{034A3CF9-4BBA-4654-96CD-8F9F12A6B86C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

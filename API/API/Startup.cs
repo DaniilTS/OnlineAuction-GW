@@ -1,6 +1,6 @@
-using API.Extensions;
-using DBAL.Context;
-using JWT.Auth.Extensions;
+using OnlineAuction.API.Extensions;
+using OnlineAuction.DBAL.Context;
+using OnlineAuction.JWT.Auth.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace API
+namespace OnlineAuction.API
 {
     public class Startup
     {
@@ -44,6 +44,8 @@ namespace API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
+
+            app.UseExceptionHandler("/error");
 
             app.UseHttpsRedirection();
 

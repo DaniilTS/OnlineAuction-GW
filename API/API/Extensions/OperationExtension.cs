@@ -1,7 +1,7 @@
-﻿using DBAL.Operations;
+﻿using OnlineAuction.DBAL.Operations;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace API.Extensions
+namespace OnlineAuction.API.Extensions
 {
     public static class OperationExtension
     {

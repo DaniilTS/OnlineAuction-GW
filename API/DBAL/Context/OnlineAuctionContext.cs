@@ -5,7 +5,7 @@ using DBAL.Models;
 
 #nullable disable
 
-namespace DBAL.Context
+namespace OnlineAuction.DBAL.Context
 {
     public partial class OnlineAuctionContext : DbContext
     {

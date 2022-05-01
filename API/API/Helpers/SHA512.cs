@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace API.Helpers
+namespace OnlineAuction.API.Helpers
 {
     public static class SHA512
     {
