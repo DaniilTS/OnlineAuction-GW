@@ -12,10 +12,12 @@ namespace API.Controllers
     {
         private readonly RoleRepository _roleRepository;
         private readonly RoleOperation _roleOperation;
-        public UserController(RoleRepository roleRepository, RoleOperation roleOperation) 
+        private readonly FinanceOperationTypeRepository _financeOperationTypeRepository;
+        public UserController(RoleRepository roleRepository, RoleOperation roleOperation, FinanceOperationTypeRepository financeOperationTypeRepository) 
         {
             _roleRepository = roleRepository;
             _roleOperation = roleOperation;
+            _financeOperationTypeRepository = financeOperationTypeRepository;
         }
 
         [HttpGet("sha")]
@@ -28,6 +30,12 @@ namespace API.Controllers
         public async Task<IActionResult> GetRoles() 
         {
             return Ok(await _roleRepository.GetCollection());
+        }
+
+        [HttpGet("financeOperationTypes")]
+        public async Task<IActionResult> GetFinanceOperationTypes() 
+        {
+            return Ok(await _financeOperationTypeRepository.GetCollection());
         }
     }
 }

@@ -17,8 +17,7 @@ namespace DBAL.Repositories
       _context = context;
       _cache = new Cache<IEnumerable<BalanceOperationType>>(async () => await GetCollectionAsync(), TimeSpan.FromDays(1));
     }
-
-    public async Task<IEnumerable<BalanceOperationType>> GetCollectionAsync() 
+    private async Task<IEnumerable<BalanceOperationType>> GetCollectionAsync() 
     {
       return await _context.BalanceOperationTypes.ToListAsync();
     }

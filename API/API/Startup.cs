@@ -1,6 +1,6 @@
-//using DBAL.Context;
-using DBAL.Operations;
-using DBAL.Repositories;
+using API.Extensions;
+using DBAL.Context;
+using JWT.Auth.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,19 +21,19 @@ namespace API
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
 
-            //services.AddDbContext<OnlineAuctionContext>();
+			      services.AddDbContext<OnlineAuctionContext>();
 
-            services.AddScoped<RoleRepository>();
+            services.AddJwtBearerAuth(Configuration);
 
-            services.AddScoped<RoleOperation>();
-
+            services.AddRepositories();
+            services.AddOperations();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,6 +49,11 @@ namespace API
 
             app.UseRouting();
 
+            app.UseCors(builder => builder.AllowAnyHeader()
+                                          .AllowAnyOrigin()
+                                          .AllowAnyMethod());
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
