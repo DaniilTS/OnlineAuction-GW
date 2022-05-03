@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnlineAuction.API.Models;
 using OnlineAuction.API.Services;
+using System.Threading.Tasks;
 
 namespace OnlineAuction.API.Controllers
 {
@@ -13,10 +15,16 @@ namespace OnlineAuction.API.Controllers
             _authService = authService;
         }
 
-        //[HttpGet("getRefreshToken")]
-        //public IActionResult GetRefreshToken() 
-        //{
-        //    return Ok(_authService.GetRefreshToken());
-        //}
+        [HttpPost("logIn")]
+        public async Task<IActionResult> LogIn([FromForm] LoginRequest loginRequest)
+        {
+            return Ok(await _authService.LogIn(loginRequest));
+        }
+
+        [HttpPost("signUp")]
+        public async Task<IActionResult> SignUp([FromForm] SignUpRequest signUpRequest)
+        {
+            return Ok(await _authService.SignUp(signUpRequest));
+        }
     }
 }

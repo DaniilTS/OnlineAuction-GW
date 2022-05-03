@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using OnlineAuction.API.Exceptions;
 using System;
 
 namespace OnlineAuction.API.Controllers
@@ -18,6 +19,7 @@ namespace OnlineAuction.API.Controllers
 			{
 				UnauthorizedAccessException _ => Unauthorized(exception.Message),
 				ArgumentException _ => BadRequest(exception.Message),
+				UserIsAlreadyExistsException _ => BadRequest(exception.Message),
 				_ => StatusCode(500)
 			};
 		}

@@ -20,11 +20,11 @@ namespace OnlineAuction.API.Controllers
             _financeOperationTypeRepository = financeOperationTypeRepository;
         }
 
-        [HttpGet("sha")]
-        public async Task<IActionResult> GetSHA512(string input) 
-        {
-            return Ok(await SHA512.GetHash(input));
-        }
+        //[HttpGet("sha")]
+        //public async Task<IActionResult> GetSHA512(string input) 
+        //{
+        //    return Ok(await SHA512.GetHash(input));
+        //}
 
         [HttpGet("roles")]
         public async Task<IActionResult> GetRoles() 
