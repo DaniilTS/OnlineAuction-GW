@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace OnlineAuction.API.Models
+namespace OnlineAuction.API.Models.Requests
 {
     public class SignUpRequest
     {

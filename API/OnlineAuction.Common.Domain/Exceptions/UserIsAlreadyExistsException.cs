@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OnlineAuction.API.Exceptions
+namespace OnlineAuction.Common.Domain.Exceptions
 {
     public class UserIsAlreadyExistsException: Exception
     {

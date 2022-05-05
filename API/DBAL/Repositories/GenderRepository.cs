@@ -20,7 +20,7 @@ namespace OnlineAuction.DBAL.Repositories
 
         private async Task<IEnumerable<Gender>> GetCollectionAsync()
         {
-            return await _context.Genders.ToListAsync();
+            return await _context.Genders.AsNoTracking().ToListAsync();
         }
 
         public async Task<IEnumerable<Gender>> GetCollection()

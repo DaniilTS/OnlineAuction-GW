@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineAuction.API.Models;
+using OnlineAuction.API.Models.Requests;
 using OnlineAuction.API.Services;
 using System.Threading.Tasks;
 
@@ -25,6 +25,12 @@ namespace OnlineAuction.API.Controllers
         public async Task<IActionResult> SignUp([FromForm] SignUpRequest signUpRequest)
         {
             return Ok(await _authService.SignUp(signUpRequest));
+        }
+
+        [HttpPost("refreshToken")]
+        public async Task<IActionResult> RefreshToken([FromForm] RefreshTokenRequest refreshTokenRequest) 
+        {
+            return Ok(await _authService.Refresh(refreshTokenRequest));
         }
     }
 }

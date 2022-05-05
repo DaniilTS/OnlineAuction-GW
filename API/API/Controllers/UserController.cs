@@ -3,6 +3,7 @@ using OnlineAuction.DBAL.Operations;
 using OnlineAuction.DBAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineAuction.API.Controllers
 {
@@ -27,6 +28,7 @@ namespace OnlineAuction.API.Controllers
         //}
 
         [HttpGet("roles")]
+        [Authorize()]
         public async Task<IActionResult> GetRoles() 
         {
             return Ok(await _roleRepository.GetCollection());

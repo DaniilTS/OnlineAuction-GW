@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using OnlineAuction.API.Exceptions;
+using OnlineAuction.Common.Domain.Exceptions;
 using System;
 
 namespace OnlineAuction.API.Controllers

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using System.Collections.Generic;
 
 namespace OnlineAuction.API
 {
@@ -26,12 +26,34 @@ namespace OnlineAuction.API
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(setupAction =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+                var options = new OpenApiInfo()
+                {
+                    Title = "Online Auction API",
+                    Description = "V 1"
+                };
+                setupAction.SwaggerDoc("v" + 1, options);
+                setupAction.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Description = "JWT with Bearer scheme",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer"
+                });
+                setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement{
+                {
+                    new OpenApiSecurityScheme{
+                        Reference = new OpenApiReference{
+                            Id = "Bearer",
+                            Type = ReferenceType.SecurityScheme
+                        }
+                    },new List<string>()
+                }});
+                setupAction.CustomSchemaIds(classType => classType.FullName);
             });
 
-			      services.AddDbContext<OnlineAuctionContext>();
+            services.AddDbContext<OnlineAuctionContext>();
 
             services.AddJwtBearerAuth(Configuration);
             services.AddRepositories();
@@ -45,7 +67,7 @@ namespace OnlineAuction.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online Auction API v1"));
             }
 
             app.UseExceptionHandler("/error");

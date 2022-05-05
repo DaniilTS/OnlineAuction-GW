@@ -1,4 +1,4 @@
-﻿namespace OnlineAuction.DBAL.Constants
+﻿namespace OnlineAuction.Common.Domain.Constants
 {
 	public static class BalanceOperationTypes
 	{

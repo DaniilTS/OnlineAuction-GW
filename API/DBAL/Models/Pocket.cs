@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace OnlineAuction.DBAL.Models
 {
-    public partial class Pocket
+    public partial class Pocket: IBaseDbModelInterface
     {
         public Pocket()
         {

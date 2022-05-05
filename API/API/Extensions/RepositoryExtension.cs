@@ -13,6 +13,7 @@ namespace OnlineAuction.API.Extensions
             services.AddScoped<FullNameRepository>();
             services.AddScoped<GenderRepository>();
             services.AddScoped<OfferStatusRepository>();
+            services.AddScoped<PocketRepository>();
             services.AddScoped<RoleRepository>();
             services.AddScoped<UserRepository>();
         }

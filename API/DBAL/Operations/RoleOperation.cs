@@ -1,4 +1,4 @@
-﻿using OnlineAuction.DBAL.Constants;
+﻿using OnlineAuction.Common.Domain.Constants;
 using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Repositories;
 

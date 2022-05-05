@@ -20,7 +20,7 @@ namespace OnlineAuction.DBAL.Repositories
 
     private async Task<IEnumerable<FinanceOperationType>> GetCollectionAsync()
     {
-      return await _context.FinanceOperationTypes.ToListAsync();
+      return await _context.FinanceOperationTypes.AsNoTracking().ToListAsync();
     }
 
     public async Task<IEnumerable<FinanceOperationType>> GetCollection()
