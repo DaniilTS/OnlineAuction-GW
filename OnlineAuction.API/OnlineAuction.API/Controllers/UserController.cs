@@ -4,6 +4,8 @@ using OnlineAuction.DBAL.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using OnlineAuction.API.Services;
+using System;
 
 namespace OnlineAuction.API.Controllers
 {
@@ -11,33 +13,24 @@ namespace OnlineAuction.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly RoleRepository _roleRepository;
-        private readonly RoleOperation _roleOperation;
-        private readonly FinanceOperationTypeRepository _financeOperationTypeRepository;
-        public UserController(RoleRepository roleRepository, RoleOperation roleOperation, FinanceOperationTypeRepository financeOperationTypeRepository) 
+        private readonly UserService _userService;
+        public UserController(UserService userService)
         {
-            _roleRepository = roleRepository;
-            _roleOperation = roleOperation;
-            _financeOperationTypeRepository = financeOperationTypeRepository;
+            _userService = userService;
         }
 
-        //[HttpGet("sha")]
-        //public async Task<IActionResult> GetSHA512(string input) 
-        //{
-        //    return Ok(await SHA512.GetHash(input));
-        //}
-
-        [HttpGet("roles")]
-        [Authorize()]
-        public async Task<IActionResult> GetRoles() 
+        [HttpPost("{userGuid:Guid}/block")]
+        public async Task<IActionResult> BlockUser(Guid userGuid, [FromBody] bool state)
         {
-            return Ok(await _roleRepository.GetCollection());
+            await _userService.SetBlockedState(userGuid, state);
+            return Ok();
         }
 
-        [HttpGet("financeOperationTypes")]
-        public async Task<IActionResult> GetFinanceOperationTypes() 
+        [HttpPost("{userGuid:Guid}/delete")]
+        public async Task<IActionResult> DeleteUser(Guid userGuid, [FromBody] bool state)
         {
-            return Ok(await _financeOperationTypeRepository.GetCollection());
+            await _userService.SetDeletedState(userGuid, state);
+            return Ok();
         }
     }
 }

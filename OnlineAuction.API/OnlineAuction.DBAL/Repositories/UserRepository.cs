@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using OnlineAuction.DBAL.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace OnlineAuction.DBAL.Repositories
 {
@@ -13,9 +15,14 @@ namespace OnlineAuction.DBAL.Repositories
             _context = context;
         }
 
-        public async Task<User> GetObject(string email) 
+        public async Task<User> GetObject(Guid id, bool isDeleted = false)
         {
-            return await _context.Users
+            return await _context.Users.Where(x => x.IsDeleted == isDeleted).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<User> GetObject(string email, bool isDeleted = false) 
+        {
+            return await _context.Users.Where(x => x.IsDeleted == isDeleted)
                 .Include(x => x.Role).FirstOrDefaultAsync(u => u.Email == email);
         }
 
