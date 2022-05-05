@@ -78,7 +78,7 @@ namespace OnlineAuction.API.Services
             var accessToken = _tokenService.GenerateAccessToken(email, clientRole.Name);
             var refreshToken = _tokenService.GenerateRefreshToken();
 
-            var fullName = new FullName()
+            var fullName = new FullName
             {
                 FirstName = signUpRequest.FirstName,
                 SecondName = signUpRequest.SecondName,
@@ -146,15 +146,12 @@ namespace OnlineAuction.API.Services
             try
             {
                 await _userRepository.CreateObject(user);
-
-                var pocket = new Pocket()
+                await _pocketRepository.CreateObject(new Pocket
                 {
                     Id = Guid.NewGuid(),
                     HolderId = user.Id,
                     Amount = 0
-                };
-
-                await _pocketRepository.CreateObject(pocket);
+                });
 
                 await transaction.CommitAsync();
             }
