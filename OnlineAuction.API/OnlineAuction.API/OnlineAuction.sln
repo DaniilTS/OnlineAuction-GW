@@ -5,11 +5,11 @@ VisualStudioVersion = 17.2.32422.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.API", "OnlineAuction.API.csproj", "{B2FBAAB8-A0C7-4D42-8788-FA92C1A4274B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.DBAL", "..\DBAL\OnlineAuction.DBAL.csproj", "{7AC4A2B6-AF60-4750-9500-0B046D0C4328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.Common.Domain", "..\OnlineAuction.Common.Domain\OnlineAuction.Common.Domain.csproj", "{EB514C48-6F8B-4C5C-B65E-C482D887AE30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuction.JWT.Auth", "..\JWT.Auth\OnlineAuction.JWT.Auth.csproj", "{034A3CF9-4BBA-4654-96CD-8F9F12A6B86C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.DBAL", "..\OnlineAuction.DBAL\OnlineAuction.DBAL.csproj", "{0B79FACF-E117-407B-97AF-28102ED0B676}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuction.Common.Domain", "..\OnlineAuction.Common.Domain\OnlineAuction.Common.Domain.csproj", "{EB514C48-6F8B-4C5C-B65E-C482D887AE30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.JWT.Auth", "..\OnlineAuction.JWT.Auth\OnlineAuction.JWT.Auth.csproj", "{3325692F-5E80-4979-BAD5-862F46AAC5AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,18 @@ Global
 		{B2FBAAB8-A0C7-4D42-8788-FA92C1A4274B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2FBAAB8-A0C7-4D42-8788-FA92C1A4274B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2FBAAB8-A0C7-4D42-8788-FA92C1A4274B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7AC4A2B6-AF60-4750-9500-0B046D0C4328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7AC4A2B6-AF60-4750-9500-0B046D0C4328}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AC4A2B6-AF60-4750-9500-0B046D0C4328}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7AC4A2B6-AF60-4750-9500-0B046D0C4328}.Release|Any CPU.Build.0 = Release|Any CPU
-		{034A3CF9-4BBA-4654-96CD-8F9F12A6B86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{034A3CF9-4BBA-4654-96CD-8F9F12A6B86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{034A3CF9-4BBA-4654-96CD-8F9F12A6B86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{034A3CF9-4BBA-4654-96CD-8F9F12A6B86C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB514C48-6F8B-4C5C-B65E-C482D887AE30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB514C48-6F8B-4C5C-B65E-C482D887AE30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB514C48-6F8B-4C5C-B65E-C482D887AE30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB514C48-6F8B-4C5C-B65E-C482D887AE30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B79FACF-E117-407B-97AF-28102ED0B676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B79FACF-E117-407B-97AF-28102ED0B676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B79FACF-E117-407B-97AF-28102ED0B676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B79FACF-E117-407B-97AF-28102ED0B676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

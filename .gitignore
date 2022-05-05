@@ -130,4 +130,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
-API/API/.vs/*
+OnlineAuction.API/OnlineAuction.API/.vs/*

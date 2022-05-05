@@ -19,6 +19,7 @@ namespace OnlineAuction.DBAL.Context
         }
 
         public virtual DbSet<Auction> Auctions { get; set; }
+        public virtual DbSet<AuctionLog> AuctionLogs { get; set; }
         public virtual DbSet<AuctionType> AuctionTypes { get; set; }
         public virtual DbSet<BalanceOperationType> BalanceOperationTypes { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
@@ -87,6 +88,17 @@ namespace OnlineAuction.DBAL.Context
                     .WithMany(p => p.Auctions)
                     .HasForeignKey(d => d.WinnerId)
                     .HasConstraintName("FK__Auction__WinnerI__6D0D32F4");
+            });
+
+            modelBuilder.Entity<AuctionLog>(entity =>
+            {
+                entity.ToTable("AuctionLog");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.Action).IsRequired();
+
+                entity.Property(e => e.Created).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<AuctionType>(entity =>
