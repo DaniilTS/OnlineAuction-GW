@@ -17,19 +17,19 @@ namespace OnlineAuction.API.Controllers
             _userService = userService;
         }
 
-        [HttpPost("{userGuid:Guid}/block")]
+        [HttpPost("{id}/block")]
         [Authorize]
-        public async Task<IActionResult> BlockUser(Guid userGuid, [FromBody] bool state)
+        public async Task<IActionResult> BlockUser(Guid id, [FromBody] bool state)
         {
-            await _userService.SetBlockedState(userGuid, state);
+            await _userService.SetBlockedState(id, state);
             return Ok();
         }
 
-        [HttpPost("{userGuid:Guid}/delete")]
+        [HttpPost("{id}/delete")]
         [Authorize]
-        public async Task<IActionResult> DeleteUser(Guid userGuid, [FromBody] bool state)
+        public async Task<IActionResult> DeleteUser(Guid id, [FromBody] bool state)
         {
-            await _userService.SetDeletedState(userGuid, state);
+            await _userService.SetDeletedState(id, state);
             return Ok();
         }
 

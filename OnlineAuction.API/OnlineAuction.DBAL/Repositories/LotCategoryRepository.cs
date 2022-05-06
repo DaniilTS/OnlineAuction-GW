@@ -33,11 +33,18 @@ namespace OnlineAuction.DBAL.Repositories
             return (await _cache[string.Empty]).FirstOrDefault(x => x.Name == name);
         }
 
+        public async Task<IEnumerable<LotCategory>> GetCollection() => await _cache[string.Empty];
+
         public async Task CreateObject(LotCategory lotCategory)
         {
             await _context.LotCategories.AddAsync(lotCategory);
             await _context.SaveChangesAsync();
             await UpdateCache();
+        }
+
+        public void DeleteObject(Guid id) 
+        {
+            _context.LotCategories.Remove(new LotCategory { Id = id });
         }
 
         public async Task UpdateCache() => await _cache.Refresh(string.Empty);

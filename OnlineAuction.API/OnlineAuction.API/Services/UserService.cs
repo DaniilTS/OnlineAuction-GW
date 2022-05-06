@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OnlineAuction.API.Models.Helpers;
+using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Repositories;
 using System;
@@ -13,6 +14,7 @@ namespace OnlineAuction.API.Services
 {
     public class UserService
     {
+        private readonly OnlineAuctionContext _context;
         private readonly UserRepository _userRepository;
         private readonly UserImageRepository _userImageRepository;
         private readonly Cloudinary _cloudinary;
@@ -21,6 +23,7 @@ namespace OnlineAuction.API.Services
         {
             _userRepository = provider.GetService<UserRepository>();
             _userImageRepository = provider.GetService<UserImageRepository>();
+            _context = provider.GetService<OnlineAuctionContext>();
 
             _cloudinary = new Cloudinary(new Account(
                 config.Value.CloudName,
@@ -46,23 +49,35 @@ namespace OnlineAuction.API.Services
 
         public async Task UploadUserPhoto(IFormFile file, Guid userId)
         {
-            var userImage = await _userImageRepository.GetObject(userId);
-            if (userImage is not null)
-                await DeleteUserPhoto(userImage);
-
-            var uploadResult = await UploadPhoto(file, userId);
-
-            var image = new UserImage
+            using (var transaction = await _context.Database.BeginTransactionAsync()) 
             {
-                Id = Guid.NewGuid(),
-                UserId = userId,
-                Url = uploadResult.SecureUrl.AbsoluteUri,
-                IsDeleted = false,
-                Created = DateTime.UtcNow,
-                Deleted = null
-            };
+                try
+                {
+                    var userImage = await _userImageRepository.GetObject(userId);
+                    if (userImage is not null)
+                        await DeleteUserPhoto(userImage);
 
-            await _userImageRepository.CreateObject(image);
+                    var uploadResult = await UploadPhoto(file, userId);
+
+                    var image = new UserImage
+                    {
+                        Id = Guid.NewGuid(),
+                        UserId = userId,
+                        Url = uploadResult.SecureUrl.AbsoluteUri,
+                        IsDeleted = false,
+                        Created = DateTime.UtcNow,
+                        Deleted = null
+                    };
+
+                    await _userImageRepository.CreateObject(image);
+
+                    await transaction.CommitAsync();
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                }
+            }      
         }
 
         private async Task DeleteUserPhoto(UserImage userImage)

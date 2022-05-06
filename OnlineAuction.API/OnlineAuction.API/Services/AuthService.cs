@@ -142,23 +142,25 @@ namespace OnlineAuction.API.Services
 
         private async Task ProcessUserCreation(User user) 
         {
-            var transaction = await _context.Database.BeginTransactionAsync();
-            try
+            using (var transaction = await _context.Database.BeginTransactionAsync())
             {
-                await _userRepository.CreateObject(user);
-                await _pocketRepository.CreateObject(new Pocket
+                try
                 {
-                    Id = Guid.NewGuid(),
-                    HolderId = user.Id,
-                    Amount = 0
-                });
+                    await _userRepository.CreateObject(user);
+                    await _pocketRepository.CreateObject(new Pocket
+                    {
+                        Id = Guid.NewGuid(),
+                        HolderId = user.Id,
+                        Amount = 0
+                    });
 
-                await transaction.CommitAsync();
-            }
-            catch (Exception)
-            {
-                await transaction.RollbackAsync();
-            }          
+                    await transaction.CommitAsync();
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                }
+            }        
         } 
     }
 }
