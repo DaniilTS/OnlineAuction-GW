@@ -46,6 +46,10 @@ namespace OnlineAuction.API.Services
 
         public async Task UploadUserPhoto(IFormFile file, Guid userId)
         {
+            var userImage = await _userImageRepository.GetObject(userId);
+            if (userImage is not null)
+                await DeleteUserPhoto(userImage);
+
             var uploadResult = await UploadPhoto(file, userId);
 
             var image = new UserImage
@@ -61,6 +65,12 @@ namespace OnlineAuction.API.Services
             await _userImageRepository.CreateObject(image);
         }
 
+        private async Task DeleteUserPhoto(UserImage userImage)
+        {
+            userImage.IsDeleted = true;
+            await _userImageRepository.UpdateObject(userImage);
+        }
+
         private async Task<ImageUploadResult> UploadPhoto(IFormFile file, Guid userId)
         {
             var uploadResult = new ImageUploadResult();
@@ -68,11 +78,11 @@ namespace OnlineAuction.API.Services
             if (file.Length > 0)
             {
                 using var stream = file.OpenReadStream();
-                var fileName = $"{userId}_{Guid.NewGuid()}";
+                var fileName = $"{Guid.NewGuid()}";
                 var uploadParams = new ImageUploadParams
                 {
                     File = new FileDescription(fileName, stream),
-                    PublicId = $"OnlineAuction/Users/{fileName}",
+                    PublicId = $"OnlineAuction/Users/{userId}/{fileName}",
                     Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
                 };
                 uploadResult = await _cloudinary.UploadAsync(uploadParams);
