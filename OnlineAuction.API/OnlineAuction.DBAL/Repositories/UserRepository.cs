@@ -40,8 +40,7 @@ namespace OnlineAuction.DBAL.Repositories
 
         public async Task<bool> IsObjectExists(string email, string phone)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Phone == phone);
-            return user != null;
+            return await _context.Users.AnyAsync(u => u.Email == email && u.Phone == phone);
         }
     }
 }

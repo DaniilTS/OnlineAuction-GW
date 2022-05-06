@@ -16,6 +16,7 @@ namespace OnlineAuction.API.Extensions
             services.AddScoped<PocketRepository>();
             services.AddScoped<RoleRepository>();
             services.AddScoped<UserRepository>();
+            services.AddScoped<UserImageRepository>();
         }
     }
 }

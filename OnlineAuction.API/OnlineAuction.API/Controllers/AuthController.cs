@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace OnlineAuction.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController: ControllerBase
+    public class AuthController: BaseController
     {
         private readonly AuthService _authService;
         public AuthController(AuthService authService)

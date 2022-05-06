@@ -13,8 +13,11 @@ namespace OnlineAuction.DBAL.Models
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
         public Guid? WinnerId { get; set; }
+        public decimal StartPrice { get; set; }
         public decimal? EndPrice { get; set; }
         public Guid? FinanceOperationId { get; set; }
+        public bool IsStarted { get; set; }
+        public bool IsFinished { get; set; }
         public bool IsEmailMessageSended { get; set; }
         public DateTime Created { get; set; }
 

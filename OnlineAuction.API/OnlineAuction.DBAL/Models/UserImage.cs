@@ -12,7 +12,7 @@ namespace OnlineAuction.DBAL.Models
         public string Url { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime Created { get; set; }
-        public DateTime Deleted { get; set; }
+        public DateTime? Deleted { get; set; }
 
         public virtual User User { get; set; }
     }

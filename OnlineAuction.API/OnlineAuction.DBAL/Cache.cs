@@ -47,5 +47,19 @@ namespace OnlineAuction.DBAL
 
             return cacheEntry;
         }
+
+        public async Task Refresh(object key)
+        {
+            var locker = _locks.GetOrAdd(key, k => new SemaphoreSlim(1, 1));
+            await locker.WaitAsync();
+            try
+            {
+                _cache.Set(key, _createItem, _cacheEntryOptions);
+            }
+            finally
+            {
+                locker.Release();
+            }
+        }
     }
 }

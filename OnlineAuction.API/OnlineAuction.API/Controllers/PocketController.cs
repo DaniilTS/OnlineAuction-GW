@@ -8,7 +8,7 @@ namespace OnlineAuction.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PocketController : ControllerBase
+    public class PocketController : BaseController
     {
         private readonly PocketService _pocketService;
         public PocketController(PocketService pocketService)

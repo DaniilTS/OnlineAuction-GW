@@ -18,7 +18,6 @@ namespace OnlineAuction.DBAL.Models
         public Guid LotCategoryId { get; set; }
         public string Description { get; set; }
         public Guid CreatorId { get; set; }
-        public decimal StartPrice { get; set; }
         public bool IsSubmitted { get; set; }
 
         public virtual User Creator { get; set; }

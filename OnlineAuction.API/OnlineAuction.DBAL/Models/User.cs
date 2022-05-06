@@ -25,7 +25,6 @@ namespace OnlineAuction.DBAL.Models
         public string Password { get; set; }
         public string Salt { get; set; }
         public string RefreshToken { get; set; }
-        public string PhotoUrl { get; set; }
         public bool IsBlocked { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime Created { get; set; }

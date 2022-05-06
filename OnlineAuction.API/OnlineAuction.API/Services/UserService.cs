@@ -1,4 +1,11 @@
-﻿using OnlineAuction.DBAL.Repositories;
+﻿using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using OnlineAuction.API.Models.Helpers;
+using OnlineAuction.DBAL.Models;
+using OnlineAuction.DBAL.Repositories;
 using System;
 using System.Threading.Tasks;
 
@@ -7,10 +14,21 @@ namespace OnlineAuction.API.Services
     public class UserService
     {
         private readonly UserRepository _userRepository;
-        public UserService(UserRepository userRepository)
+        private readonly UserImageRepository _userImageRepository;
+        private readonly Cloudinary _cloudinary;
+
+        public UserService(IServiceProvider provider, IOptions<CloudinarySettings> config)
         {
-            _userRepository = userRepository;
+            _userRepository = provider.GetService<UserRepository>();
+            _userImageRepository = provider.GetService<UserImageRepository>();
+
+            _cloudinary = new Cloudinary(new Account(
+                config.Value.CloudName,
+                config.Value.ApiKey,
+                config.Value.ApiSecret));
         }
+
+        public async Task<User> GetUserByEmail(string email) => await _userRepository.GetObject(email);
 
         public async Task SetBlockedState(Guid userId, bool state)
         {
@@ -24,6 +42,43 @@ namespace OnlineAuction.API.Services
             var user = await _userRepository.GetObject(userId);
             user.IsDeleted = state;
             await _userRepository.UpdateObject(user);
+        }
+
+        public async Task UploadUserPhoto(IFormFile file, Guid userId)
+        {
+            var uploadResult = await UploadPhoto(file, userId);
+
+            var image = new UserImage
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                Url = uploadResult.SecureUrl.AbsoluteUri,
+                IsDeleted = false,
+                Created = DateTime.UtcNow,
+                Deleted = null
+            };
+
+            await _userImageRepository.CreateObject(image);
+        }
+
+        private async Task<ImageUploadResult> UploadPhoto(IFormFile file, Guid userId)
+        {
+            var uploadResult = new ImageUploadResult();
+
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var fileName = $"{userId}_{Guid.NewGuid()}";
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(fileName, stream),
+                    PublicId = $"OnlineAuction/Users/{fileName}",
+                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
+                };
+                uploadResult = await _cloudinary.UploadAsync(uploadParams);
+            }
+
+            return uploadResult;
         }
     }
 }

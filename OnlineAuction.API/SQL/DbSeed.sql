@@ -96,7 +96,8 @@ DECLARE @adminRole UNIQUEIDENTIFIER = (SELECT [Id] FROM [Role] WHERE [Name]=N'Ad
 
 IF NOT EXISTS(SELECT * FROM [User] WHERE [RoleId]=@adminRole)
 	DECLARE @userId UNIQUEIDENTIFIER = NEWID()
-	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, N'd.tsukrov@gmail.com', N'+375292759056', @password, @salt, NULL, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
+	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, N'd.tsukrov@gmail.com', N'+375292759056', @password, @salt, NULL, NULL, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
+
 	IF NOT EXISTS(SELECT * FROM [Pocket] WHERE [HolderId]=@userId)
 		INSERT INTO [Pocket] VALUES (NEWID(), @userId, 0)
 GO
