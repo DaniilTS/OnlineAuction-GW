@@ -11,6 +11,7 @@ namespace OnlineAuction.API.Extensions
             services.AddScoped<PocketService>();
             services.AddScoped<UserService>();
             services.AddScoped<LotService>();
+            services.AddScoped<PhotoService>();
         }
     }
 }

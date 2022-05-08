@@ -18,22 +18,13 @@ namespace OnlineAuction.DBAL.Repositories
             _cache = new Cache<IEnumerable<LotCategory>>(async () => await GetCollectionAsync(), TimeSpan.FromDays(1));
         }
 
-        private async Task<List<LotCategory>> GetCollectionAsync()
-        {
-            return await _context.LotCategories.ToListAsync();
-        }
-
-        public async Task<LotCategory> GetObject(Guid id)
-        {
-            return (await _cache[string.Empty]).FirstOrDefault(x => x.Id == id);
-        }
-
-        public async Task<LotCategory> GetObject(string name)
-        {
-            return (await _cache[string.Empty]).FirstOrDefault(x => x.Name == name);
-        }
+        private async Task<List<LotCategory>> GetCollectionAsync() => await _context.LotCategories.ToListAsync();
 
         public async Task<IEnumerable<LotCategory>> GetCollection() => await _cache[string.Empty];
+
+        public async Task<LotCategory> GetObject(Guid id) => (await _cache[string.Empty]).FirstOrDefault(x => x.Id == id);
+
+        public async Task<LotCategory> GetObject(string name) => (await _cache[string.Empty]).FirstOrDefault(x => x.Name == name);
 
         public async Task CreateObject(LotCategory lotCategory)
         {
@@ -42,9 +33,10 @@ namespace OnlineAuction.DBAL.Repositories
             await UpdateCache();
         }
 
-        public void DeleteObject(Guid id) 
+        public async Task DeleteObject(Guid id)
         {
             _context.LotCategories.Remove(new LotCategory { Id = id });
+            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateCache() => await _cache.Refresh(string.Empty);

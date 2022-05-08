@@ -16,19 +16,15 @@ namespace OnlineAuction.API.Services
     {
         private readonly OnlineAuctionContext _context;
         private readonly UserRepository _userRepository;
+        private readonly PhotoService _photoService;
         private readonly UserImageRepository _userImageRepository;
-        private readonly Cloudinary _cloudinary;
 
-        public UserService(IServiceProvider provider, IOptions<CloudinarySettings> config)
+        public UserService(IServiceProvider provider)
         {
             _userRepository = provider.GetService<UserRepository>();
             _userImageRepository = provider.GetService<UserImageRepository>();
+            _photoService = provider.GetService<PhotoService>();
             _context = provider.GetService<OnlineAuctionContext>();
-
-            _cloudinary = new Cloudinary(new Account(
-                config.Value.CloudName,
-                config.Value.ApiKey,
-                config.Value.ApiSecret));
         }
 
         public async Task<User> GetUserByEmail(string email) => await _userRepository.GetObject(email);
@@ -57,7 +53,7 @@ namespace OnlineAuction.API.Services
                     if (userImage is not null)
                         await DeleteUserPhoto(userImage);
 
-                    var uploadResult = await UploadPhoto(file, userId);
+                    var uploadResult = await _photoService.UploadPhoto(file, userId, "Users");
 
                     var image = new UserImage
                     {
@@ -86,24 +82,6 @@ namespace OnlineAuction.API.Services
             await _userImageRepository.UpdateObject(userImage);
         }
 
-        private async Task<ImageUploadResult> UploadPhoto(IFormFile file, Guid userId)
-        {
-            var uploadResult = new ImageUploadResult();
-
-            if (file.Length > 0)
-            {
-                using var stream = file.OpenReadStream();
-                var fileName = $"{Guid.NewGuid()}";
-                var uploadParams = new ImageUploadParams
-                {
-                    File = new FileDescription(fileName, stream),
-                    PublicId = $"OnlineAuction/Users/{userId}/{fileName}",
-                    Transformation = new Transformation().Height(500).Width(500).Crop("fill").Gravity("face")
-                };
-                uploadResult = await _cloudinary.UploadAsync(uploadParams);
-            }
-
-            return uploadResult;
-        }
+        
     }
 }

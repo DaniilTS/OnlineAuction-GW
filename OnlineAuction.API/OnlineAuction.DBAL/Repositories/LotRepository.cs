@@ -1,9 +1,7 @@
-﻿using OnlineAuction.DBAL.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.DBAL.Repositories
@@ -14,6 +12,17 @@ namespace OnlineAuction.DBAL.Repositories
         public LotRepository(OnlineAuctionContext context)
         {
             _context = context;
+        }
+
+        public async Task<Lot> GetObject(Guid lotId) 
+        {
+            return await _context.Lots.FirstOrDefaultAsync(x => x.Id == lotId);
+        }
+
+        public async Task UpdateObject(Lot lot) 
+        {
+            _context.Entry(lot).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
         public async Task CreateObject(Lot lot)

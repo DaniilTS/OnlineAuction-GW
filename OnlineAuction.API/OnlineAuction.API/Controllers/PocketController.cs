@@ -16,13 +16,13 @@ namespace OnlineAuction.API.Controllers
             _pocketService = pocketService;
         }
 
-        [HttpGet("getPocketAmount")]
+        [HttpGet("amount")]
         public async Task<IActionResult> GetPocketAmount([FromQuery] Guid pocketGuid)
         {
             return Ok(await _pocketService.GetPocketAmount(pocketGuid));
         }
 
-        [HttpPost("setPocketAmount")]
+        [HttpPost("amount")]
         public async Task<IActionResult> SetPocketAmount([FromForm] SetPocketAmountRequest request)
         {
             await _pocketService.SetPocketAmount(request.PocketGuid, request.PocketAmount);

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using OnlineAuction.API.Models.Requests;
 using OnlineAuction.API.Services;
 using System;
 using System.Threading.Tasks;
@@ -13,8 +15,10 @@ namespace OnlineAuction.API.Controllers
             _lotService = lotService;
         }
 
+        #region [Lot Categories]
+
         [HttpGet("categories")]
-        public async Task<IActionResult> GetLotCategories() 
+        public async Task<IActionResult> GetLotCategories()
         {
             return Ok(await _lotService.GetLotCategories());
         }
@@ -27,22 +31,31 @@ namespace OnlineAuction.API.Controllers
         }
 
         [HttpDelete("category")]
-        public IActionResult DeleteLotCategory([FromForm] Guid id) 
+        public async Task<IActionResult> DeleteLotCategory([FromForm] Guid id)
         {
-            _lotService.DeleteLotCategory(id);
+            await _lotService.DeleteLotCategory(id);
             return Ok();
         }
 
+        #endregion
+
+        #region [Lot]
+
         [HttpPost("")]
-        public IActionResult CreateLot() 
+        [Authorize]
+        public async Task<IActionResult> CreateLot([FromForm] LotCreateRequest request)
         {
+            await _lotService.CreateLot(request);
             return Ok();
         }
 
         [HttpPost("{id}/submit")]
-        public IActionResult SubmitLot(Guid id) 
+        public async Task<IActionResult> SubmitLotValue(Guid id, [FromForm] bool value)
         {
+            await _lotService.LotSubmition(id, value);
             return Ok();
         }
+
+        #endregion
     }
 }
