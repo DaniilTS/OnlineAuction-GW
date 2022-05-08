@@ -11,6 +11,6 @@ namespace OnlineAuction.API.Models.Requests
         [Required]
         public string Description { get; set; }
         [Required]
-        public IFormFile[] FormFiles { get; set; }
+        public IFormFileCollection FormFiles { get; set; }
     }
 }

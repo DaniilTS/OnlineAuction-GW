@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using OnlineAuction.API.Models.Helpers;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.API.Services
@@ -19,6 +22,18 @@ namespace OnlineAuction.API.Services
                 configValue.CloudName,
                 configValue.ApiKey,
                 configValue.ApiSecret));
+        }
+
+        public async Task<List<ImageUploadResult>> UploadPhotos(IFormFileCollection formFiles, Guid id, string folderName) 
+        {
+            var list = new List<ImageUploadResult>();
+
+            foreach (var file in formFiles) 
+            {
+                list.Add(await UploadPhoto(file, id, folderName));
+            }
+
+            return list;
         }
 
         public async Task<ImageUploadResult> UploadPhoto(IFormFile file, Guid id, string folderName)

@@ -20,6 +20,7 @@ namespace OnlineAuction.API.Extensions
             services.AddScoped<UserImageRepository>();
 
             services.AddScoped<LotRepository>();
+            services.AddScoped<LotImageRepository>();
             services.AddScoped<LotCategoryRepository>();
         }
     }

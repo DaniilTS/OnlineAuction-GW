@@ -10,9 +10,11 @@ namespace OnlineAuction.API.Controllers
     public class LotController: BaseController
     {
         private readonly LotService _lotService;
-        public LotController(LotService lotService)
+        private readonly UserService _userService;
+        public LotController(LotService lotService, UserService userService)
         {
             _lotService = lotService;
+            _userService = userService;
         }
 
         #region [Lot Categories]
@@ -45,7 +47,9 @@ namespace OnlineAuction.API.Controllers
         [Authorize]
         public async Task<IActionResult> CreateLot([FromForm] LotCreateRequest request)
         {
-            await _lotService.CreateLot(request);
+            var email = HttpContext.User.Identity.Name;
+            var user = await _userService.GetUserByEmail(email);
+            await _lotService.CreateLot(user.Id, request);
             return Ok();
         }
 

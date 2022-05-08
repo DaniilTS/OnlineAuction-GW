@@ -33,7 +33,7 @@ namespace OnlineAuction.API.Controllers
             return Ok();
         }
 
-        [HttpPost("uploadPhoto")]
+        [HttpPost("photo/upload")]
         [Authorize]
         public async Task<IActionResult> UploadPhoto(IFormFile file)
         {
