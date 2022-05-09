@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using OnlineAuction.API.Models.Requests;
 using OnlineAuction.API.Services;
+using System;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.API.Controllers
@@ -8,7 +10,7 @@ namespace OnlineAuction.API.Controllers
     public class AuthController: BaseController
     {
         private readonly AuthService _authService;
-        public AuthController(AuthService authService)
+        public AuthController(AuthService authService, IServiceProvider sp) : base(sp)
         {
             _authService = authService;
         }

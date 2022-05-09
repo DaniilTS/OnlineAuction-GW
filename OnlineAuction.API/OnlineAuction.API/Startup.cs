@@ -64,6 +64,8 @@ namespace OnlineAuction.API
             services.AddServices();
 
             services.AddRouting(options => options.LowercaseUrls = true);
+
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

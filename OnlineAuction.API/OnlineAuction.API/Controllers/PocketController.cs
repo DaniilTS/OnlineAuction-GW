@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using OnlineAuction.API.Models.Requests;
 using OnlineAuction.API.Services;
 using System;
@@ -11,7 +12,7 @@ namespace OnlineAuction.API.Controllers
     public class PocketController : BaseController
     {
         private readonly PocketService _pocketService;
-        public PocketController(PocketService pocketService)
+        public PocketController(PocketService pocketService, IServiceProvider sp) : base(sp)
         {
             _pocketService = pocketService;
         }

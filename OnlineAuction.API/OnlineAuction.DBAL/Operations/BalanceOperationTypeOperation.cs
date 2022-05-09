@@ -1,6 +1,7 @@
 ﻿using OnlineAuction.Common.Domain.Constants;
 using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Repositories;
+using System.Collections.Generic;
 
 namespace OnlineAuction.DBAL.Operations
 {
@@ -14,5 +15,6 @@ namespace OnlineAuction.DBAL.Operations
 
         public BalanceOperationType Positive => _repo.GetObject(BalanceOperationTypes.Positive).Result;
         public BalanceOperationType Negative => _repo.GetObject(BalanceOperationTypes.Negative).Result;
+        public List<BalanceOperationType> Types => new() { Positive, Negative };
     }
 }

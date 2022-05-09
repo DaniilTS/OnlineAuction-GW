@@ -12,7 +12,7 @@ namespace OnlineAuction.API.Controllers
     public class UserController : BaseController
     {
         private readonly UserService _userService;
-        public UserController(UserService userService)
+        public UserController(UserService userService, IServiceProvider sp) : base(sp)
         {
             _userService = userService;
         }
@@ -37,9 +37,7 @@ namespace OnlineAuction.API.Controllers
         [Authorize]
         public async Task<IActionResult> UploadPhoto(IFormFile file)
         {
-            var email = HttpContext.User.Identity.Name;
-            var user = await _userService.GetUserByEmail(email);
-            await _userService.UploadUserPhoto(file, user.Id);
+            await _userService.UploadUserPhoto(file, CurrentUser.Id);
             return Ok();
         }
     }

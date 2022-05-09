@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineAuction.API.Models.Requests;
 using OnlineAuction.API.Services;
@@ -11,7 +12,7 @@ namespace OnlineAuction.API.Controllers
     {
         private readonly LotService _lotService;
         private readonly UserService _userService;
-        public LotController(LotService lotService, UserService userService)
+        public LotController(LotService lotService, UserService userService, IServiceProvider sp) : base(sp)
         {
             _lotService = lotService;
             _userService = userService;
@@ -47,9 +48,7 @@ namespace OnlineAuction.API.Controllers
         [Authorize]
         public async Task<IActionResult> CreateLot([FromForm] LotCreateRequest request)
         {
-            var email = HttpContext.User.Identity.Name;
-            var user = await _userService.GetUserByEmail(email);
-            await _lotService.CreateLot(user.Id, request);
+            await _lotService.CreateLot(CurrentUser.Id, request);
             return Ok();
         }
 
