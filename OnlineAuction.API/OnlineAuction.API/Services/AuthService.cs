@@ -48,6 +48,9 @@ namespace OnlineAuction.API.Services
             if (user.Password != password)
                 throw new UnauthorizedAccessException(ExceptionConstants.PasswordOrEmailIsNotRight);
 
+            if (user.IsBlocked)
+                throw new UnauthorizedAccessException(ExceptionConstants.UserIsBlocked);
+
             var refreshToken = _tokenService.GenerateRefreshToken();
 
             user.RefreshToken = refreshToken.Value;
@@ -140,6 +143,16 @@ namespace OnlineAuction.API.Services
             };
         }
 
+        public async Task<PassResponse> GenPass(string password) 
+        {
+            var salt = CryptoHelper.GenerateSalt();
+            return new PassResponse
+            {
+                Password = await CryptoHelper.GetHash(string.Join(password, salt)),
+                Salt = salt
+            };
+        } 
+
         private async Task ProcessUserCreation(User user) 
         {
             using (var transaction = await _context.Database.BeginTransactionAsync())
@@ -159,6 +172,7 @@ namespace OnlineAuction.API.Services
                 catch (Exception)
                 {
                     await transaction.RollbackAsync();
+                    throw new Exception(ExceptionConstants.UserCreationProcessFailed);
                 }
             }        
         } 

@@ -32,5 +32,11 @@ namespace OnlineAuction.API.Controllers
         {
             return Ok(await _authService.Refresh(refreshTokenRequest));
         }
+
+        [HttpPost("pass")]
+        public async Task<IActionResult> GenPass([FromForm] string password) 
+        {
+            return Ok(await _authService.GenPass(password));
+        }
     }
 }

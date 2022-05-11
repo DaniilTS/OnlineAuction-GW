@@ -15,7 +15,7 @@ namespace OnlineAuction.API.Controllers
         }
 
         [HttpPost("")]
-        public Task<IActionResult> CreateAuction() 
+        public Task<IActionResult> CreateAuction()
         {
             return null;
         }

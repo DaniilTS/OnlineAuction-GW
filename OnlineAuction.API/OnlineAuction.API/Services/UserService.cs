@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OnlineAuction.API.Models.Helpers;
+using OnlineAuction.Common.Domain;
 using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Repositories;
@@ -72,6 +73,7 @@ namespace OnlineAuction.API.Services
                 catch (Exception)
                 {
                     await transaction.RollbackAsync();
+                    throw new Exception(ExceptionConstants.PhotoUploadFailed);
                 }
             }      
         }

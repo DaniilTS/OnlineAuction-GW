@@ -9,6 +9,7 @@ using OnlineAuction.API.Models.Requests;
 using CloudinaryDotNet.Actions;
 using System.Linq;
 using OnlineAuction.DBAL.Context;
+using OnlineAuction.Common.Domain;
 
 namespace OnlineAuction.API.Services
 {
@@ -74,6 +75,7 @@ namespace OnlineAuction.API.Services
                 catch (Exception) 
                 {
                     await transaction.RollbackAsync();
+                    throw new Exception(ExceptionConstants.LotCreationProccessFailed);
                 }              
             }
         }

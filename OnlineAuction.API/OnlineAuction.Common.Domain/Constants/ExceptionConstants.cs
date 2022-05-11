@@ -6,5 +6,9 @@
         public static readonly string PasswordOrEmailIsNotRight = "Password or email is not correct";
         public static readonly string UserCreationProcessFailed = "Creation process of user has been failed";
         public static readonly string RefreshTokenIsNotValid = "Refresh token is not valid";
+        public static readonly string UserIsBlocked = "User is blocked. Write to support to know additional info";
+        public static readonly string UserCreationProccessFailed = "User creation proccess has been failed";
+        public static readonly string LotCreationProccessFailed = "Lot creation proccess has been failed";
+        public static readonly string PhotoUploadFailed = "Photo uploading has been failed";
     }
 }
