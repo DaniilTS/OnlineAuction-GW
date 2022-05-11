@@ -298,6 +298,8 @@ namespace OnlineAuction.DBAL.Context
 
                 entity.Property(e => e.Description).IsRequired();
 
+                entity.Property(e => e.IsDeleted).HasDefaultValueSql("((0))");
+
                 entity.HasOne(d => d.Creator)
                     .WithMany(p => p.Lots)
                     .HasForeignKey(d => d.CreatorId)

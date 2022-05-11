@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.Common.Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.DBAL", "..\OnlineAuction.DBAL\OnlineAuction.DBAL.csproj", "{0B79FACF-E117-407B-97AF-28102ED0B676}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.JWT.Auth", "..\OnlineAuction.JWT.Auth\OnlineAuction.JWT.Auth.csproj", "{3325692F-5E80-4979-BAD5-862F46AAC5AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuction.Auth", "..\OnlineAuction.Auth\OnlineAuction.Auth.csproj", "{C5D468C8-A5D7-4C76-B791-79DBDA7A6E89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{0B79FACF-E117-407B-97AF-28102ED0B676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B79FACF-E117-407B-97AF-28102ED0B676}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B79FACF-E117-407B-97AF-28102ED0B676}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3325692F-5E80-4979-BAD5-862F46AAC5AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D468C8-A5D7-4C76-B791-79DBDA7A6E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D468C8-A5D7-4C76-B791-79DBDA7A6E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D468C8-A5D7-4C76-B791-79DBDA7A6E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D468C8-A5D7-4C76-B791-79DBDA7A6E89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace OnlineAuction.JWT.Auth.Helpers
+namespace OnlineAuction.Auth.Helpers
 {
     public static class KeyHelper
     {

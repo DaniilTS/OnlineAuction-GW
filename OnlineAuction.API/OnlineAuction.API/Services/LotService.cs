@@ -102,6 +102,13 @@ namespace OnlineAuction.API.Services
             await lotRepository.UpdateObject(lot);
         }
 
+        public async Task DeleteLot(Guid id) 
+        { 
+            var lot = await lotRepository.GetObject(id);
+            lot.IsDeleted = true;
+            await lotRepository.UpdateObject(lot);
+        }
+
         #endregion
     }
 }

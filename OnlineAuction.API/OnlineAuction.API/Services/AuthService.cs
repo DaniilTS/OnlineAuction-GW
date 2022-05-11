@@ -3,13 +3,13 @@ using OnlineAuction.API.Helpers;
 using OnlineAuction.API.Models.Requests;
 using OnlineAuction.API.Models.Responses;
 using OnlineAuction.API.Models.Shared;
+using OnlineAuction.Auth.Services;
 using OnlineAuction.Common.Domain;
 using OnlineAuction.Common.Domain.Exceptions;
 using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Operations;
 using OnlineAuction.DBAL.Repositories;
-using OnlineAuction.JWT.Auth.Services;
 using System;
 using System.Threading.Tasks;
 

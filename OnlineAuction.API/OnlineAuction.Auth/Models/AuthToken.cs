@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OnlineAuction.JWT.Auth.Models
+namespace OnlineAuction.Auth.Models
 {
     public class AuthToken
     {

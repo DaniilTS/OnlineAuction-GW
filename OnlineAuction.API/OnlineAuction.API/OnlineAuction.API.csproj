@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OnlineAuction.Auth\OnlineAuction.Auth.csproj" />
     <ProjectReference Include="..\OnlineAuction.DBAL\OnlineAuction.DBAL.csproj" />
-    <ProjectReference Include="..\OnlineAuction.JWT.Auth\OnlineAuction.JWT.Auth.csproj" />
     <ProjectReference Include="..\OnlineAuction.Common.Domain\OnlineAuction.Common.Domain.csproj" />
   </ItemGroup>
 

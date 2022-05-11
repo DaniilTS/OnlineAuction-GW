@@ -59,6 +59,13 @@ namespace OnlineAuction.API.Controllers
             return Ok();
         }
 
+        [HttpDelete("")]
+        public async Task<IActionResult> DeleteLot([FromForm] Guid id) 
+        {
+            await _lotService.DeleteLot(id);
+            return Ok();
+        }
+
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿using OnlineAuction.JWT.Auth.Models;
+﻿using OnlineAuction.Auth.Models;
 
 namespace OnlineAuction.API.Models.Shared
 {

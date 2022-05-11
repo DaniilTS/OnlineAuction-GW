@@ -1,13 +1,13 @@
-﻿using OnlineAuction.JWT.Auth.Helpers;
-using OnlineAuction.JWT.Auth.Models;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
+using OnlineAuction.Auth.Helpers;
+using OnlineAuction.Auth.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
-namespace OnlineAuction.JWT.Auth.Services
+namespace OnlineAuction.Auth.Services
 {
     public class TokenService
     {

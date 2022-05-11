@@ -1,6 +1,5 @@
 using OnlineAuction.API.Extensions;
 using OnlineAuction.DBAL.Context;
-using OnlineAuction.JWT.Auth.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using OnlineAuction.API.Models.Helpers;
+using OnlineAuction.Auth.Extensions;
 
 namespace OnlineAuction.API
 {
