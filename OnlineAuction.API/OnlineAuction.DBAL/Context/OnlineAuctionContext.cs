@@ -59,6 +59,8 @@ namespace OnlineAuction.DBAL.Context
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
+                entity.Property(e => e.Commission).HasColumnType("money");
+
                 entity.Property(e => e.Created).HasColumnType("datetime");
 
                 entity.Property(e => e.End).HasColumnType("datetime");
@@ -75,8 +77,13 @@ namespace OnlineAuction.DBAL.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Auction__Auction__6B24EA82");
 
+                entity.HasOne(d => d.CommissionFinanceOperation)
+                    .WithMany(p => p.AuctionCommissionFinanceOperations)
+                    .HasForeignKey(d => d.CommissionFinanceOperationId)
+                    .HasConstraintName("FK__Auction__Commiss__7F2BE32F");
+
                 entity.HasOne(d => d.FinanceOperation)
-                    .WithMany(p => p.Auctions)
+                    .WithMany(p => p.AuctionFinanceOperations)
                     .HasForeignKey(d => d.FinanceOperationId)
                     .HasConstraintName("FK__Auction__Finance__6E01572D");
 

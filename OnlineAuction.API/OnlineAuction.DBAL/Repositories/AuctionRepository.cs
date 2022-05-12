@@ -14,20 +14,20 @@ namespace OnlineAuction.DBAL.Repositories
             _context = context;
         }
 
-        public async Task<Auction> GetObject(Guid lotId)
+        public async Task<Auction> GetObject(Guid auctionId)
         {
-            return await _context.Auctions.FirstOrDefaultAsync(x => x.Id == lotId);
+            return await _context.Auctions.FirstOrDefaultAsync(x => x.Id == auctionId);
         }
 
-        public async Task UpdateObject(Auction lot)
+        public async Task UpdateObject(Auction auction)
         {
-            _context.Entry(lot).State = EntityState.Modified;
+            _context.Entry(auction).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
-        public async Task CreateObject(Auction lot)
+        public async Task CreateObject(Auction auction)
         {
-            await _context.Auctions.AddAsync(lot);
+            await _context.Auctions.AddAsync(auction);
             await _context.SaveChangesAsync();
         }
     }

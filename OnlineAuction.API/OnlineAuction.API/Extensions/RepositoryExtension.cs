@@ -7,11 +7,14 @@ namespace OnlineAuction.API.Extensions
     {
         public static void AddRepositories(this IServiceCollection services) 
         {
+            services.AddScoped<AuctionRepository>();
+            services.AddScoped<AuctionLogRepository>();
             services.AddScoped<AuctionTypeRepository>();
+            services.AddScoped<OfferStatusRepository>();
+
             services.AddScoped<BalanceOperationTypeRepository>();
             services.AddScoped<FinanceOperationTypeRepository>();
             services.AddScoped<GenderRepository>();
-            services.AddScoped<OfferStatusRepository>();
 
             services.AddScoped<PocketRepository>();
             services.AddScoped<FullNameRepository>();

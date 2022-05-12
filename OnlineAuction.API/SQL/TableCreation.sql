@@ -228,8 +228,26 @@ CREATE TABLE [Offer]
 )
 GO
 
-ALTER TABLE [Lot]
-DROP COLUMN [IsDeleted]
+IF COL_LENGTH('Lot','IsDeleted') IS NULL
+BEGIN
+	ALTER TABLE [Lot]
+	ADD [IsDeleted] BIT NULL DEFAULT(0)
+END
+GO
 
-ALTER TABLE [Lot]
-ADD [IsDeleted] BIT NULL DEFAULT(0)
+IF COL_LENGTH('Aution','Commission') IS NULL
+BEGIN
+	ALTER TABLE [Auction]
+	ADD [Commission] MONEY NULL
+END
+GO
+
+IF COL_LENGTH('Aution','[CommissionFinanceOperationId]') IS NULL
+BEGIN
+	ALTER TABLE [Auction]
+	ADD [CommissionFinanceOperationId] UNIQUEIDENTIFIER REFERENCES [FinanceOperation] (Id) DEFAULT(NULL)
+END
+GO
+
+
+
