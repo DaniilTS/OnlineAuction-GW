@@ -88,17 +88,17 @@ IF NOT EXISTS(SELECT * FROM [OfferStatus] WHERE [Name]=@declined)
 	INSERT INTO [OfferStatus] VALUES (NEWID(), @declined)
 GO
 
-DECLARE @left NVARCHAR(36) = CONVERT(NVARCHAR(36), NEWID())
-DECLARE @right NVARCHAR(36) = CONVERT(NVARCHAR(36), NEWID())
-DECLARE @salt NVARCHAR(72) = (SELECT CONCAT(@left, @right))
-DECLARE @password NVARCHAR(128) = (CONVERT(NVARCHAR(128), HASHBYTES('SHA2_512', CONCAT(N'password', @salt)), 2))
-DECLARE @adminRole UNIQUEIDENTIFIER = (SELECT [Id] FROM [Role] WHERE [Name]=N'Admin')
+--DECLARE @left NVARCHAR(36) = CONVERT(NVARCHAR(36), NEWID())
+--DECLARE @right NVARCHAR(36) = CONVERT(NVARCHAR(36), NEWID())
+--DECLARE @salt NVARCHAR(72) = (SELECT CONCAT(@left, @right))
+--DECLARE @password NVARCHAR(128) = (CONVERT(NVARCHAR(128), HASHBYTES('SHA2_512', CONCAT(N'password', @salt)), 2))
+--DECLARE @adminRole UNIQUEIDENTIFIER = (SELECT [Id] FROM [Role] WHERE [Name]=N'Admin')
 
-IF NOT EXISTS(SELECT * FROM [User] WHERE [RoleId]=@adminRole)
-	DECLARE @userId UNIQUEIDENTIFIER = NEWID()
-	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, N'd.tsukrov@gmail.com', N'+375292759056', @password, @salt, NULL, NULL, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
+--IF NOT EXISTS(SELECT * FROM [User] WHERE [RoleId]=@adminRole)
+--	DECLARE @userId UNIQUEIDENTIFIER = NEWID()
+--	INSERT INTO [User] VALUES (@userId, @adminRole, NULL, NULL, N'd.tsukrov@gmail.com', N'+375292759056', @password, @salt, NULL, NULL, NULL, 0, 0, GETUTCDATE(), GETUTCDATE())
 
-	IF NOT EXISTS(SELECT * FROM [Pocket] WHERE [HolderId]=@userId)
-		INSERT INTO [Pocket] VALUES (NEWID(), @userId, 0)
-GO
+--	IF NOT EXISTS(SELECT * FROM [Pocket] WHERE [HolderId]=@userId)
+--		INSERT INTO [Pocket] VALUES (NEWID(), @userId, 0)
+--GO
 

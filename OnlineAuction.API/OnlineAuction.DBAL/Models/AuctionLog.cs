@@ -12,5 +12,8 @@ namespace OnlineAuction.DBAL.Models
         public Guid UserId { get; set; }
         public string Action { get; set; }
         public DateTime Created { get; set; }
+
+        public virtual Auction Auction { get; set; }
+        public virtual User User { get; set; }
     }
 }

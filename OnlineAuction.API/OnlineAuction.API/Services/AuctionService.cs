@@ -3,6 +3,7 @@ using OnlineAuction.API.Models.Requests;
 using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.API.Services
@@ -15,6 +16,11 @@ namespace OnlineAuction.API.Services
         { 
             auctionRepository = sp.GetService<AuctionRepository>();
             auctionLogRepository = sp.GetService<AuctionLogRepository>();
+        }
+
+        public IEnumerable<object> GetAuctionLogs(Guid auctionId)
+        {
+            return auctionLogRepository.GetCollection(auctionId);
         }
 
         public async Task CreateAuction(AuctionCreateRequest request) 

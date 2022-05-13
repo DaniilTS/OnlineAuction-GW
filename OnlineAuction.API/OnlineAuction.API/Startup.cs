@@ -5,10 +5,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using System.Collections.Generic;
 using OnlineAuction.API.Models.Helpers;
 using OnlineAuction.Auth.Extensions;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace OnlineAuction.API
 {
@@ -29,35 +29,12 @@ namespace OnlineAuction.API
 
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
 
-            services.AddSwaggerGen(setupAction =>
+            services.AddDbContext<OnlineAuctionContext>(cfg => 
             {
-                var options = new OpenApiInfo()
-                {
-                    Title = "Online Auction API",
-                    Description = "V 1"
-                };
-                setupAction.SwaggerDoc("v" + 1, options);
-                setupAction.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
-                {
-                    Name = "Authorization",
-                    Description = "JWT with Bearer scheme",
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "bearer"
-                });
-                setupAction.AddSecurityRequirement(new OpenApiSecurityRequirement{
-                {
-                    new OpenApiSecurityScheme{
-                        Reference = new OpenApiReference{
-                            Id = "Bearer",
-                            Type = ReferenceType.SecurityScheme
-                        }
-                    },new List<string>()
-                }});
-                setupAction.CustomSchemaIds(classType => classType.FullName);
+                cfg.LogTo(Console.WriteLine, LogLevel.Information);
             });
 
-            services.AddDbContext<OnlineAuctionContext>();
-
+            services.AddSwagger();
             services.AddJwtBearerAuth(Configuration);
             services.AddRepositories();
             services.AddOperations();

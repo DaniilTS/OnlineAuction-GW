@@ -18,5 +18,6 @@ namespace OnlineAuction.DBAL.Models
         public virtual User Creator { get; set; }
         public virtual FinanceOperation FinanceOperation { get; set; }
         public virtual Lot Lot { get; set; }
+        public virtual OfferStatus OfferStatus { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineAuction.API.Models.Requests;
 using OnlineAuction.API.Services;
@@ -45,6 +44,12 @@ namespace OnlineAuction.API.Controllers
         {
             await _auctionService.MakeBid(CurrentUser.Id, id, request);
             return Ok();
+        }
+
+        [HttpGet("{id:Guid}/logs")]
+        public async Task<IActionResult> GetAuctionLog(Guid id) 
+        {
+            return Ok(_auctionService.GetAuctionLogs(id));
         }
     }
 }

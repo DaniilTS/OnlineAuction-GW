@@ -9,6 +9,7 @@ namespace OnlineAuction.DBAL.Models
     {
         public User()
         {
+            AuctionLogs = new HashSet<AuctionLog>();
             Auctions = new HashSet<Auction>();
             Lots = new HashSet<Lot>();
             Offers = new HashSet<Offer>();
@@ -33,6 +34,7 @@ namespace OnlineAuction.DBAL.Models
         public virtual FullName FullName { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Role Role { get; set; }
+        public virtual ICollection<AuctionLog> AuctionLogs { get; set; }
         public virtual ICollection<Auction> Auctions { get; set; }
         public virtual ICollection<Lot> Lots { get; set; }
         public virtual ICollection<Offer> Offers { get; set; }
