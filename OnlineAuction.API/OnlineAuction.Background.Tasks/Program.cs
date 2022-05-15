@@ -2,9 +2,11 @@
 using Hangfire.SqlServer;
 using Newtonsoft.Json;
 using OnlineAuction.Background.Tasks.Jobs;
+using OnlineAuction.Common.Domain.Constants;
 using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.Background.Tasks
@@ -30,13 +32,18 @@ namespace OnlineAuction.Background.Tasks
 
             var onlineAuctionContext = new OnlineAuctionContext();
             var currencyPairRepository = new CurrencyPairRepository(onlineAuctionContext);
-            var currencyPairRateRepository = new CurrencyPairRateRepository(onlineAuctionContext);
 
-            var pair1 = await currencyPairRepository.GetObject("USD", "BYN");
-            await CurrencyRateJob.Start(pair1, currencyPairRateRepository);
+            var pair1 = await currencyPairRepository.GetObject(Currencies.USD, Currencies.BYN);
+            var pair2 = await currencyPairRepository.GetObject(Currencies.RUB, Currencies.BYN);
 
-            //RecurringJob.AddOrUpdate(() => Console.WriteLine("Recurring job!"), Cron.Minutely);
-            //RecurringJob.AddOrUpdate(() => CurrencyRateJob.Start(pair1, currencyPairRateRepository), Cron.Minutely);
+            var currencies = new List<string> { Currencies.USD, Currencies.RUB };
+
+            foreach (var currency in currencies) 
+            {
+                var pair = await currencyPairRepository.GetObject(currency, Currencies.BYN);
+                RecurringJob.RemoveIfExists($"{currency}->{Currencies.BYN}");
+                RecurringJob.AddOrUpdate($"{currency}->{Currencies.BYN}", () => CurrencyRateJob.Start(pair1), Crons.Each5thHour);
+            }
 
             using (var server = new BackgroundJobServer())
             {
