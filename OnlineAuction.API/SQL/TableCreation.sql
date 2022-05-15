@@ -84,7 +84,7 @@ IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='Currenc
 CREATE TABLE [CurrencyPairRate]
 (
 	[Id] UNIQUEIDENTIFIER PRIMARY KEY NOT NULL,
-	[CurrencyPairRateId] UNIQUEIDENTIFIER REFERENCES [CurrencyPair] (Id) NOT NULL,
+	[CurrencyPairId] UNIQUEIDENTIFIER REFERENCES [CurrencyPair] (Id) NOT NULL,
 	[Rate] MONEY NOT NULL,
 	[RateTime] DATETIME NOT NULL
 )
@@ -154,6 +154,7 @@ CREATE TABLE [Lot]
 	[Description] NVARCHAR(MAX) NOT NULL,
 	[CreatorId] UNIQUEIDENTIFIER REFERENCES [User] NOT NULL,
 	[IsSubmitted] BIT NOT NULL DEFAULT(0),
+	[IsDeleted] BIT NOT NULL DEFAULT(0)
 )
 GO
 
@@ -188,7 +189,9 @@ CREATE TABLE [Auction]
 	[WinnerId] UNIQUEIDENTIFIER REFERENCES [User] NULL,
 	[StartPrice] MONEY NOT NULL,
 	[EndPrice] MONEY NULL,
+	[Commision] MONEY NULL,
 	[FinanceOperationId] UNIQUEIDENTIFIER REFERENCES [FinanceOperation] (Id) DEFAULT(NULL),
+	[CommissionFinanceOperationId] UNIQUEIDENTIFIER REFERENCES [FinanceOperation] (Id) DEFAULT(NULL),
 	[IsStarted] BIT NOT NULL DEFAULT(0),
 	[IsFinished] BIT NOT NULL DEFAULT(0),
 	[IsEmailMessageSended] BIT NOT NULL DEFAULT(0),
@@ -222,32 +225,12 @@ CREATE TABLE [Offer]
 	[CreatorId] UNIQUEIDENTIFIER REFERENCES [User] (Id) NOT NULL,
 	[LotId] UNIQUEIDENTIFIER REFERENCES [Lot] (Id) NOT NULL,
 	[Amount] MONEY NOT NULL,
+	[Commission] MONEY NOT NULL,
 	[OfferStatusId] UNIQUEIDENTIFIER NOT NULL REFERENCES [OfferStatus] (Id),
 	[FinanceOperationId] UNIQUEIDENTIFIER REFERENCES [FinanceOperation] (Id) DEFAULT(NULL),
+	[CommissionFinanceOperationId] UNIQUEIDENTIFIER REFERENCES [FinanceOperation] (Id) DEFAULT(NULL),
 	[Created] DATETIME NOT NULL
 )
 GO
-
-IF COL_LENGTH('Lot','IsDeleted') IS NULL
-BEGIN
-	ALTER TABLE [Lot]
-	ADD [IsDeleted] BIT NULL DEFAULT(0)
-END
-GO
-
-IF COL_LENGTH('Aution','Commission') IS NULL
-BEGIN
-	ALTER TABLE [Auction]
-	ADD [Commission] MONEY NULL
-END
-GO
-
-IF COL_LENGTH('Aution','[CommissionFinanceOperationId]') IS NULL
-BEGIN
-	ALTER TABLE [Auction]
-	ADD [CommissionFinanceOperationId] UNIQUEIDENTIFIER REFERENCES [FinanceOperation] (Id) DEFAULT(NULL)
-END
-GO
-
 
 

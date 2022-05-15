@@ -20,13 +20,13 @@ namespace OnlineAuction.DBAL.Models
         public Guid? WinnerId { get; set; }
         public decimal StartPrice { get; set; }
         public decimal? EndPrice { get; set; }
+        public decimal? Commision { get; set; }
         public Guid? FinanceOperationId { get; set; }
+        public Guid? CommissionFinanceOperationId { get; set; }
         public bool IsStarted { get; set; }
         public bool IsFinished { get; set; }
         public bool IsEmailMessageSended { get; set; }
         public DateTime Created { get; set; }
-        public decimal? Commission { get; set; }
-        public Guid? CommissionFinanceOperationId { get; set; }
 
         public virtual AuctionType AuctionType { get; set; }
         public virtual FinanceOperation CommissionFinanceOperation { get; set; }

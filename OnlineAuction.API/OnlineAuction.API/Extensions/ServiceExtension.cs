@@ -9,6 +9,7 @@ namespace OnlineAuction.API.Extensions
         {
             services.AddScoped<AuthService>();
             services.AddScoped<AuctionService>();
+            services.AddScoped<OfferService>();
             services.AddScoped<PocketService>();
             services.AddScoped<UserService>();
             services.AddScoped<LotService>();

@@ -34,7 +34,7 @@ namespace OnlineAuction.API.Services
                 End = request.Start.AddDays(request.Duration),
                 StartPrice = request.StartPrice,
                 EndPrice = request.StartPrice,
-                Commission = null,
+                Commision = null,
                 FinanceOperationId = null,
                 CommissionFinanceOperationId = null,
                 IsStarted = false,
@@ -50,7 +50,7 @@ namespace OnlineAuction.API.Services
         {
             var auction = await auctionRepository.GetObject(auctionId);
             auction.EndPrice = auction.StartPrice;
-            auction.Commission = auction.EndPrice * 0.05m;
+            auction.Commision = auction.EndPrice * 0.05m;
             auction.WinnerId = userId;
 
             await auctionRepository.UpdateObject(auction);
@@ -62,7 +62,7 @@ namespace OnlineAuction.API.Services
             var auction = await auctionRepository.GetObject(auctionId);
             var startEndPrice = auction.EndPrice;
             auction.EndPrice += request.RaiseAmount;
-            auction.Commission = auction.EndPrice * 0.05m;
+            auction.Commision = auction.EndPrice * 0.05m;
             auction.WinnerId = userId;
 
             await auctionRepository.UpdateObject(auction);
@@ -75,7 +75,7 @@ namespace OnlineAuction.API.Services
             if (request.Amount > auction.EndPrice) 
             {
                 auction.EndPrice = request.Amount;
-                auction.Commission = auction.EndPrice * 0.05m;
+                auction.Commision = auction.EndPrice * 0.05m;
                 auction.WinnerId = userId;
 
                 await auctionRepository.UpdateObject(auction);

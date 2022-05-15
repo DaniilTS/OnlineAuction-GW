@@ -10,6 +10,7 @@ namespace OnlineAuction.API.Extensions
             services.AddScoped<AuctionRepository>();
             services.AddScoped<AuctionLogRepository>();
             services.AddScoped<AuctionTypeRepository>();
+            services.AddScoped<OfferRepository>();
             services.AddScoped<OfferStatusRepository>();
 
             services.AddScoped<BalanceOperationTypeRepository>();

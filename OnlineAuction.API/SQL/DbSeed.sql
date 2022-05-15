@@ -34,6 +34,14 @@ IF NOT EXISTS(SELECT * FROM [Currency] WHERE [Name]=@usd)
 	INSERT INTO [Currency] VALUES (NEWID(), @usd, N'USD')
 GO
 
+DECLARE @from UNIQUEIDENTIFIER = (SELECT [Id] FROM [Currency] WHERE [Code] = N'BYN')
+DECLARE @to1 UNIQUEIDENTIFIER = (SELECT [Id] FROM [Currency] WHERE [Code] = N'RUB')
+DECLARE @to2 UNIQUEIDENTIFIER = (SELECT [Id] FROM [Currency] WHERE [Code] = N'USD')
+
+INSERT INTO [CurrencyPair] VALUES (NEWID(), @from, @to1)
+INSERT INTO [CurrencyPair] VALUES (NEWID(), @from, @to2)
+GO
+
 DECLARE @positive NVARCHAR(10) = N'Positive'
 DECLARE @negative NVARCHAR(10) = N'Negative'
 

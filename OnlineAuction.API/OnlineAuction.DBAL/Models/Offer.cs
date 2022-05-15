@@ -11,10 +11,13 @@ namespace OnlineAuction.DBAL.Models
         public Guid CreatorId { get; set; }
         public Guid LotId { get; set; }
         public decimal Amount { get; set; }
+        public decimal Commission { get; set; }
         public Guid OfferStatusId { get; set; }
         public Guid? FinanceOperationId { get; set; }
+        public Guid? CommissionFinanceOperationId { get; set; }
         public DateTime Created { get; set; }
 
+        public virtual FinanceOperation CommissionFinanceOperation { get; set; }
         public virtual User Creator { get; set; }
         public virtual FinanceOperation FinanceOperation { get; set; }
         public virtual Lot Lot { get; set; }

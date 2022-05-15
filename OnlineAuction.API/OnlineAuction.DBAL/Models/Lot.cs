@@ -19,7 +19,7 @@ namespace OnlineAuction.DBAL.Models
         public string Description { get; set; }
         public Guid CreatorId { get; set; }
         public bool IsSubmitted { get; set; }
-        public bool? IsDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         public virtual User Creator { get; set; }
         public virtual LotCategory LotCategory { get; set; }

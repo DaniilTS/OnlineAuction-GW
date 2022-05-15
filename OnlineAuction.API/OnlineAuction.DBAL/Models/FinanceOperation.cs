@@ -11,7 +11,8 @@ namespace OnlineAuction.DBAL.Models
         {
             AuctionCommissionFinanceOperations = new HashSet<Auction>();
             AuctionFinanceOperations = new HashSet<Auction>();
-            Offers = new HashSet<Offer>();
+            OfferCommissionFinanceOperations = new HashSet<Offer>();
+            OfferFinanceOperations = new HashSet<Offer>();
         }
 
         public Guid Id { get; set; }
@@ -27,6 +28,7 @@ namespace OnlineAuction.DBAL.Models
         public virtual Pocket Pocket { get; set; }
         public virtual ICollection<Auction> AuctionCommissionFinanceOperations { get; set; }
         public virtual ICollection<Auction> AuctionFinanceOperations { get; set; }
-        public virtual ICollection<Offer> Offers { get; set; }
+        public virtual ICollection<Offer> OfferCommissionFinanceOperations { get; set; }
+        public virtual ICollection<Offer> OfferFinanceOperations { get; set; }
     }
 }
