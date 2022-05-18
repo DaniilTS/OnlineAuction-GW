@@ -63,7 +63,6 @@ namespace OnlineAuction.API
             app.UseCors(builder => builder.AllowAnyHeader()
                                           .AllowAnyOrigin()
                                           .AllowAnyMethod());
-
             app.UseAuthentication();
             app.UseAuthorization();
 

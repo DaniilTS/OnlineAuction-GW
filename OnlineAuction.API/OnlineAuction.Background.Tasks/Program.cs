@@ -6,7 +6,6 @@ using OnlineAuction.Common.Domain.Constants;
 using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.Background.Tasks
@@ -36,14 +35,8 @@ namespace OnlineAuction.Background.Tasks
             var pair1 = await currencyPairRepository.GetObject(Currencies.USD, Currencies.BYN);
             var pair2 = await currencyPairRepository.GetObject(Currencies.RUB, Currencies.BYN);
 
-            var currencies = new List<string> { Currencies.USD, Currencies.RUB };
-
-            foreach (var currency in currencies) 
-            {
-                var pair = await currencyPairRepository.GetObject(currency, Currencies.BYN);
-                RecurringJob.RemoveIfExists($"{currency}->{Currencies.BYN}");
-                RecurringJob.AddOrUpdate($"{currency}->{Currencies.BYN}", () => CurrencyRateJob.Start(pair1), Crons.Each5thHour);
-            }
+            RecurringJob.AddOrUpdate("USD->BYN", () => CurrencyRateJob.Start(pair1), Cron.Minutely);
+            RecurringJob.AddOrUpdate("RUB->BYN", () => CurrencyRateJob.Start(pair2), Cron.Minutely);
 
             using (var server = new BackgroundJobServer())
             {

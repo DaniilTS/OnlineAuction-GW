@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OnlineAuction.DBAL.Models.Auction">
+    <Position X="14" Y="0.5" Width="2.5" />
+    <AssociationLine Name="Winner" Type="OnlineAuction.DBAL.Models.User" ManuallyRouted="true">
+      <Path>
+        <Point X="14" Y="2.578" />
+        <Point X="12.812" Y="2.578" />
+        <Point X="12.812" Y="2.688" />
+        <Point X="11.062" Y="2.688" />
+        <Point X="11.062" Y="4.038" />
+        <Point X="10.583" Y="4.038" Type="JumpStart" />
+        <Point X="10.417" Y="4.038" Type="JumpEnd" />
+        <Point X="10.24" Y="4.038" Type="JumpStart" />
+        <Point X="10.073" Y="4.038" Type="JumpEnd" />
+        <Point X="7.927" Y="4.038" Type="JumpStart" />
+        <Point X="7.76" Y="4.038" Type="JumpEnd" />
+        <Point X="4.812" Y="4.038" />
+        <Point X="4.812" Y="1.879" />
+        <Point X="4" Y="1.879" />
+        <Point X="4" Y="3.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAICQABAACEAAEAEAACAAACQgAhAAEwABAAAhAAAAAA=</HashCode>
+      <FileName>Models\Auction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AuctionType" />
+      <Property Name="CommissionFinanceOperation" />
+      <Property Name="FinanceOperation" />
+      <Property Name="Winner" />
+      <Property Name="Lot" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.AuctionLog">
+    <Position X="17.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAACAgAAAAAAAQAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\AuctionLog.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Auction" />
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.AuctionType">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AuctionType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.BalanceOperationType">
+    <Position X="13" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAIAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BalanceOperationType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.FinanceOperation">
+    <Position X="12.75" Y="11.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AgAGIAAAAAAAAAAAgAAAAACAMAAEAAQAQAIAAAAAAgA=</HashCode>
+      <FileName>Models\FinanceOperation.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FinanceOperationStatus" />
+      <Property Name="FinanceOperationType" />
+      <Property Name="Pocket" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.FinanceOperationStatus">
+    <Position X="16.25" Y="9.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\FinanceOperationStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.FinanceOperationType">
+    <Position X="13.25" Y="8.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAgAAAAAgAAAACAAAAAAA=</HashCode>
+      <FileName>Models\FinanceOperationType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BalanceOperationType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.FullName">
+    <Position X="1.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAGgAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FullName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.Gender">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Gender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.Lot">
+    <Position X="2" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAEBwAAACAAAAAAAAAwAAAgAAEAAAAQAAAAA=</HashCode>
+      <FileName>Models\Lot.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Creator" />
+      <Property Name="LotCategory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.LotCategory">
+    <Position X="5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LotCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.LotImage">
+    <Position X="5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAAEAAAAAgAAAQACAAAAQAAAAA=</HashCode>
+      <FileName>Models\LotImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Lot" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.Offer">
+    <Position X="7.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAEAAAAGAAAAAACQAAgAAAwBEAAAJAAAAAI=</HashCode>
+      <FileName>Models\Offer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="OfferStatus" />
+      <Property Name="CommissionFinanceOperation" />
+      <Property Name="FinanceOperation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.OfferStatus">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\OfferStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.Pocket">
+    <Position X="8" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAACAAAAAABAAAAICAAAAAAA=</HashCode>
+      <FileName>Models\Pocket.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Holder" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.Role">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.User">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACJCAAIQQCAQAICBEAAAAAAAAQEAEgQCQAAAIQAAAAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Gender" />
+      <Property Name="Role" />
+      <Property Name="FullName" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.UserImage">
+    <Position X="6" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAAAAAAEAgAAAAAAAQACAAAAQAAAAA=</HashCode>
+      <FileName>Models\UserImage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.Currency" Collapsed="true">
+    <Position X="20.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAgAAQAAAAAEAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Currency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.CurrencyPair">
+    <Position X="18.75" Y="6.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AgACAIAAAAAAAAAAAAAAAAAAABAIAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Models\CurrencyPair.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="From" />
+      <Property Name="To" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OnlineAuction.DBAL.Models.CurrencyPairRate">
+    <Position X="18.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACEACAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Models\CurrencyPairRate.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrencyPair" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
