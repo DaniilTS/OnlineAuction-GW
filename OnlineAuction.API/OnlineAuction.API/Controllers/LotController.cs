@@ -27,9 +27,9 @@ namespace OnlineAuction.API.Controllers
         }
 
         [HttpPost("category")]
-        public async Task<IActionResult> CreateLotCategory([FromForm] string lotCategoryName)
+        public async Task<IActionResult> CreateLotCategory([FromForm] string name)
         {
-            await _lotService.CreateLotCategory(lotCategoryName);
+            await _lotService.CreateLotCategory(name);
             return Ok();
         }
 

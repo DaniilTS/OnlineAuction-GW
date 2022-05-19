@@ -17,22 +17,21 @@ namespace OnlineAuction.DBAL.Repositories
             _context = context;
         }
 
-        public async Task<User> GetObject(Guid id, bool isDeleted = false)
+        public async Task<User> GetObject(Guid id)
         {
-            return await _context.Users.Where(x => x.IsDeleted == isDeleted).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<User>> GetColelction(PaginationParams pagination, bool isDeleted = false) 
         {
-            return await _context.Users.Where(x => x.IsDeleted == isDeleted)
+            return await _context.Users
                 .Skip((pagination.Page - 1) * pagination.PageSize)
                 .Take(pagination.PageSize).ToListAsync();
         }
 
-        public async Task<User> GetObject(string email, bool isDeleted = false) 
+        public async Task<User> GetObject(string email) 
         {
             return await _context.Users
-                .Where(x => x.IsDeleted == isDeleted)
                 .Include(x => x.Role)
                 .Include(x => x.FullName)
                 .FirstOrDefaultAsync(u => u.Email == email);

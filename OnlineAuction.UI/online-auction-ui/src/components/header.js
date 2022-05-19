@@ -20,7 +20,7 @@ function AppHeader({ isAuth, isLoginPage, isSignupPage, setIsAuth, setIsLoginPag
     setIsAuth(false);
     setIsLoginPage(true);
     setIsSignupPage(false);
-    localStorage.setItem('accessToken', null);
+    localStorage.removeItem('accessToken');
   }
 
   const [ url, setUrl ] = useState(UserPhotoNoImage);
@@ -29,8 +29,10 @@ function AppHeader({ isAuth, isLoginPage, isSignupPage, setIsAuth, setIsLoginPag
   if (isAuth) {
     if(url == UserPhotoNoImage){
       getUserPhoto().then(value => {
-        setUrl(value);
-        console.log('photo')
+        if(value.status !== 500) {
+          setUrl(value);
+          console.log('photo')
+        }
       });
     }
     

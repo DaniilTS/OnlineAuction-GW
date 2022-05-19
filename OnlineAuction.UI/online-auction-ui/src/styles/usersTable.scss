@@ -1,0 +1,56 @@
+.users__table {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.table__cell {
+    min-width: 150px;
+    border: 1px solid;
+
+    &:first-child {
+        min-width: 30px;
+    }
+}
+
+.users__row {
+
+    .row{
+
+        &-index{
+            padding-left: 9px;
+            padding-bottom: 4px;
+            border: 1px solid;
+        }
+
+        &-property {
+            padding-left: 5px;
+            border: 1px solid;
+        }
+
+        &-actions {
+            padding: 0;
+            height: 100%;
+            border: 1px solid;
+            border-collapse: collapse;
+
+            .actions__button {
+                width: 50%;
+                height: 32px;
+            }
+        } 
+    }
+}
+
+.button{
+    &-block {
+        background-color: orange;
+        color: black;
+        border: 0;
+    }
+
+    &-delete {
+        background-color: red;
+        color: azure;
+        border: 0;
+    }
+}

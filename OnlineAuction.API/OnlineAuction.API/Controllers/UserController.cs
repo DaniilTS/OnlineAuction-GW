@@ -27,7 +27,7 @@ namespace OnlineAuction.API.Controllers
 
         [HttpPost("{id}/block")]
         [Authorize]
-        public async Task<IActionResult> BlockUser(Guid id, [FromBody] bool state)
+        public async Task<IActionResult> BlockUser(Guid id, [FromForm] bool state)
         {
             await _userService.SetBlockedState(id, state);
             return Ok();
@@ -35,7 +35,7 @@ namespace OnlineAuction.API.Controllers
 
         [HttpPost("{id}/delete")]
         [Authorize]
-        public async Task<IActionResult> DeleteUser(Guid id, [FromBody] bool state)
+        public async Task<IActionResult> DeleteUser(Guid id, [FromForm] bool state)
         {
             await _userService.SetDeletedState(id, state);
             return Ok();

@@ -7,12 +7,12 @@ export async function login({ setIsAuth, setIsLoginPage, setIsSignupPage }) {
     body.append('Password', password.value);
 
     const response = await fetch('https://localhost:44365/api/Auth/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: body
-        });
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json'
+        },
+        body: body
+    });
 
     const data = await response.json();
     if (response.ok === true) {
@@ -23,6 +23,6 @@ export async function login({ setIsAuth, setIsLoginPage, setIsSignupPage }) {
         setIsLoginPage(false);
         setIsSignupPage(false);
     } else {
-        console.log("Error: ", response.status, data.errorText);
+        document.getElementById('error-message').innerText = data;
     }
 }

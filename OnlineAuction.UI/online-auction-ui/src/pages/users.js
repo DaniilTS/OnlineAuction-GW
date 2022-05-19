@@ -1,7 +1,6 @@
 import { getUsers } from "../services/userService.js";
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import UsersTable from "../components/users/usersTable";
-
 
 function Users({isAuth}) {
 
@@ -11,21 +10,25 @@ function Users({isAuth}) {
     });
 
     const [ users, setUsers ] = useState(null);
-    const [ usersRows, setUsersRows ] = useState();
+    const [ userTable, setUserTable ] = useState();
 
-    
-    if(!users && isAuth) {
+    useEffect(() => {
+        setUserTable(<UsersTable users={users} updateUsersTable={updateUsersTable} />)
+    }, [users]);
+
+    function updateUsersTable(){
         getUsers(pagination.page, pagination.pageSize).then(val => {
             setUsers(val);
         })
     }
 
+    if(!users && isAuth) {
+        updateUsersTable();
+    }
+
     return (
         <div>
-            Users Table
-            <div>
-                <UsersTable users={users} />
-            </div>
+            { userTable }
         </div>
     );
 }
