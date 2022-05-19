@@ -22,6 +22,12 @@ namespace OnlineAuction.API.Controllers
             return Ok();
         }
 
+        [HttpGet("getAuctions")]
+        public async Task<IActionResult> GetAuctions() 
+        {
+            return Ok(await _auctionService.GetAuctions());
+        }
+
         [HttpPost("{id}/applyBid")]
         [Authorize]
         public async Task<IActionResult> ApplyBid(Guid id)
@@ -47,7 +53,7 @@ namespace OnlineAuction.API.Controllers
         }
 
         [HttpGet("{id:Guid}/logs")]
-        public async Task<IActionResult> GetAuctionLog(Guid id) 
+        public IActionResult GetAuctionLog(Guid id) 
         {
             return Ok(_auctionService.GetAuctionLogs(id));
         }

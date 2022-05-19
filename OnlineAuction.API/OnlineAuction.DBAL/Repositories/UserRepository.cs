@@ -4,6 +4,8 @@ using OnlineAuction.DBAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace OnlineAuction.DBAL.Repositories
 {
@@ -20,10 +22,20 @@ namespace OnlineAuction.DBAL.Repositories
             return await _context.Users.Where(x => x.IsDeleted == isDeleted).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<User> GetObject(string email, bool isDeleted = false) 
+        public async Task<IEnumerable<User>> GetColelction(PaginationParams pagination, bool isDeleted = false) 
         {
             return await _context.Users.Where(x => x.IsDeleted == isDeleted)
-                .Include(x => x.Role).FirstOrDefaultAsync(u => u.Email == email);
+                .Skip((pagination.Page - 1) * pagination.PageSize)
+                .Take(pagination.PageSize).ToListAsync();
+        }
+
+        public async Task<User> GetObject(string email, bool isDeleted = false) 
+        {
+            return await _context.Users
+                .Where(x => x.IsDeleted == isDeleted)
+                .Include(x => x.Role)
+                .Include(x => x.FullName)
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
 
         public async Task CreateObject(User user)

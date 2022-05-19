@@ -23,6 +23,11 @@ namespace OnlineAuction.API.Services
             return auctionLogRepository.GetCollection(auctionId);
         }
 
+        public async Task<IEnumerable<Auction>> GetAuctions() 
+        {
+            return await auctionRepository.GetCollection();
+        }
+
         public async Task CreateAuction(AuctionCreateRequest request) 
         {
             var auction = new Auction

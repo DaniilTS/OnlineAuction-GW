@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import AppFooter from './components/footer';
 import AppHeader from './components/header';
-// import logo from './media/logo.svg';
+import AppMain from './components/main.js';
 import './styles/App.css';
 
 function App() {
-  const [ isAuth, setIsAuth ] = useState(false);
+
+  const [ isAuth, setIsAuth ] = useState(localStorage.getItem("accessToken"));
+  const [ isLoginPage, setIsLoginPage ] = useState(false);
+  const [ isSignupPage, setIsSignupPage ] = useState(false);
+
+  const params = {
+    isAuth,
+    isLoginPage,
+    isSignupPage,
+    setIsAuth,
+    setIsLoginPage,
+    setIsSignupPage
+  }
+
   return (
     <>
-      <AppHeader isAuth={isAuth} setIsAuth={setIsAuth}/>
+      <AppHeader {...params}/>
+      <AppMain {...params}/>
       <AppFooter/>
     </>
   );

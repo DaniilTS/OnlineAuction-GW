@@ -2,6 +2,7 @@
 using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.DBAL.Repositories
@@ -12,6 +13,11 @@ namespace OnlineAuction.DBAL.Repositories
         public AuctionRepository(OnlineAuctionContext context) 
         {
             _context = context;
+        }
+
+        public async Task<IEnumerable<Auction>> GetCollection() 
+        {
+            return await _context.Auctions.ToListAsync();
         }
 
         public async Task<Auction> GetObject(Guid auctionId)

@@ -4,11 +4,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using OnlineAuction.API.Models.Helpers;
+using OnlineAuction.API.Models.Requests;
 using OnlineAuction.Common.Domain;
+using OnlineAuction.DBAL;
 using OnlineAuction.DBAL.Context;
 using OnlineAuction.DBAL.Models;
 using OnlineAuction.DBAL.Repositories;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OnlineAuction.API.Services
@@ -30,6 +34,11 @@ namespace OnlineAuction.API.Services
 
         public async Task<User> GetUserByEmail(string email) => await _userRepository.GetObject(email);
 
+        public async Task<IEnumerable<User>> GetUsers(PaginationParams request) 
+        {
+            return await _userRepository.GetColelction(request);
+        }
+
         public async Task SetBlockedState(Guid userId, bool state)
         {
             var user = await _userRepository.GetObject(userId);
@@ -42,6 +51,11 @@ namespace OnlineAuction.API.Services
             var user = await _userRepository.GetObject(userId);
             user.IsDeleted = state;
             await _userRepository.UpdateObject(user);
+        }
+
+        public async Task<UserImage> GetUserPhoto(Guid userId) 
+        {
+            return await _userImageRepository.GetObject(userId);
         }
 
         public async Task UploadUserPhoto(IFormFile file, Guid userId)
