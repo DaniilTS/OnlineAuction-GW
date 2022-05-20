@@ -44,6 +44,12 @@ namespace OnlineAuction.API.Controllers
 
         #region [Lot]
 
+        [HttpGet("getAll")]
+        public async Task<IActionResult> GetLots() 
+        {
+            return Ok(await _lotService.GetLots());
+        }
+
         [HttpPost("")]
         [Authorize]
         public async Task<IActionResult> CreateLot([FromForm] LotCreateRequest request)

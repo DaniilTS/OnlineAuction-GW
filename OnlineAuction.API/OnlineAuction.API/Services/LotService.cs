@@ -50,6 +50,11 @@ namespace OnlineAuction.API.Services
 
         #region [Lot]
 
+        public async Task<IEnumerable<Lot>> GetLots() 
+        {
+            return await lotRepository.GetCollection();
+        }
+
         public async Task CreateLot(Guid userId, LotCreateRequest request) 
         {
             using (var transaction = await context.Database.BeginTransactionAsync()) 

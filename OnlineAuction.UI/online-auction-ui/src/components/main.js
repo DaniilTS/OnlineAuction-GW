@@ -10,8 +10,8 @@ function AppMain(props) {
       { props.isSignupPage ? <Signup/> : ''}
       { props.isLoginPage ? <Login {...props}/> : ''}
       { props.isAuth ? <MainRoutingPage {...props}/> : ''}
-      <div id='error-message' className='error-message'>
-      </div>
+      {/* <div id='error-message' className='error-message'>
+      </div> */}
     </main>  
   );
 }
