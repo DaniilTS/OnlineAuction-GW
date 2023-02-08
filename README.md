@@ -1,6 +1,7 @@
 # OnlineAuction-GW
 
 API to work on Auction
+
 It has:
  - Background task (Hangfire) that is going to National Belarus Bank API to get the latest currency pair rates;
  - In-memory cache for static db-objects that represented as static classes;
